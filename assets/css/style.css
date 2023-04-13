@@ -11777,7 +11777,7 @@ body.open-quickview-block .biolife-quickview-block{
     .contain-product__deal-layout img{
         display: inline-block;
     }
-    .biolife-banner__style-01 .text-content .third-line, 
+    .biolife-banner__style-01 .text-content .third-line,
     .biolife-banner__style-01 .text-content .second-line{
         font-size: 30px;
         line-height: 40px;
@@ -13281,11 +13281,11 @@ body.open-quickview-block .biolife-quickview-block{
     .biolife-banner__style-04 .text-content{
         min-height: auto;
     }
-    .biolife-banner__style-14 .text2, 
-    .biolife-banner__style-09 .text2, 
+    .biolife-banner__style-14 .text2,
+    .biolife-banner__style-09 .text2,
     .biolife-banner__style-03 .text2,
-    .biolife-banner__style-13 .text2, 
-    .biolife-banner__style-08 .text2, 
+    .biolife-banner__style-13 .text2,
+    .biolife-banner__style-08 .text2,
     .biolife-banner__style-02 .text2{
         font-size: 25px;
     }
@@ -13438,6 +13438,13 @@ body.open-quickview-block .biolife-quickview-block{
 }
 .xs-padding-top-30px{
     padding-top: 30px;
+}
+
+.xs-padding-top-50px{
+    padding-top: 50px;
+}
+.xs-padding-bottom-30px{
+    padding-bottom: 30px;
 }
 .xs-padding-bottom-50px{
     padding-bottom: 50px;
