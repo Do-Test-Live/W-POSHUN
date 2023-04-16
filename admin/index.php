@@ -11,7 +11,7 @@ if (isset($_SESSION['userid'])) {
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-   <title>Login | Wayshk Admin</title>
+   <title>Login | PO SHUN Admin</title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
     <link href="css/style.css" rel="stylesheet">
@@ -28,7 +28,7 @@ if (isset($_SESSION['userid'])) {
                             <div class="col-xl-12">
                                 <div class="auth-form">
 									<div class="text-center mb-3">
-                                        <h1 class="text-white">Wayshk Admin</h1>
+                                        <h1 class="text-white">PO SHUN Admin</h1>
 									</div>
                                     <h4 class="text-center mb-4 text-white">Sign in your account</h4>
                                     <form action="" method="post">
@@ -76,7 +76,7 @@ if (isset($_SESSION['userid'])) {
 
             ?>
             <script>
-                window.location.href = "dashboard.php";
+                window.location.href = "Dashboard";
             </script>
         <?php
         }else{
