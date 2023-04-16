@@ -1,4 +1,4 @@
-ErrorDocument 404 http://localhost/W-Wayshk-Admin/404.php
+ErrorDocument 404 http://localhost/W-PO SHUN-Admin/404.php
 
 RewriteEngine on
 

@@ -11,7 +11,7 @@ if (!isset($_SESSION['userid'])) {
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Add Category | Wayshk Admin</title>
+    <title>Add Category | PO SHUN Admin</title>
     <?php include 'include/css.php'; ?>
 </head>
 <body>

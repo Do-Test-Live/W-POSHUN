@@ -3,7 +3,7 @@
        ***********************************-->
 <div class="footer">
     <div class="copyright">
-        <p>Copyright © Wayshk Admin</p>
+        <p>Copyright © PO SHUN Admin</p>
     </div>
 </div>
 <!--**********************************
