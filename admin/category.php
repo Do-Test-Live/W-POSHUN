@@ -105,5 +105,56 @@ if (!isset($_SESSION['userid'])) {
 <!-- Datatable -->
 <script src="vendor/datatables/js/jquery.dataTables.min.js"></script>
 <script src="js/plugins-init/datatables.init.js"></script>
+
+<script>
+    function categoryDelete(id) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    type: 'get',
+                    url: 'Delete',
+                    data: {
+                        catId: id
+                    },
+                    success: function (data) {
+                        if (data.toString() === 'P') {
+                            Swal.fire(
+                                'Not Deleted!',
+                                'Your have store in this category.',
+                                'error'
+                            ).then((result) => {
+                                window.location = 'Category';
+                            });
+                        } else {
+                            Swal.fire(
+                                'Deleted!',
+                                'Your file has been deleted.',
+                                'success'
+                            ).then((result) => {
+                                window.location = 'Category';
+                            });
+                        }
+                    }
+                });
+            } else {
+                Swal.fire(
+                    'Cancelled!',
+                    'Your Category is safe :)',
+                    'error'
+                ).then((result) => {
+                    window.location = 'Category';
+                });
+            }
+        })
+    }
+</script>
 </body>
 </html>

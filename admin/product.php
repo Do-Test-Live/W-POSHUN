@@ -12,6 +12,8 @@ if (!isset($_SESSION['userid'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Product | PO SHUN Admin</title>
+    <!-- Datatable -->
+    <link href="vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
     <?php include 'include/css.php'; ?>
 </head>
 <body>
@@ -72,9 +74,9 @@ if (!isset($_SESSION['userid'])) {
                                     <tbody>
                                     <tr>
                                         <td>1</td>
-                                        <th>Category</th>
-                                        <th>Store</th>
-                                        <th>Name</th>
+                                        <th>Category1</th>
+                                        <th>Store1</th>
+                                        <th>Name1</th>
                                         <td>Tiger Nixon</td>
                                         <td>Tiger Nixon</td>
                                         <td>Image</td>
@@ -108,5 +110,8 @@ if (!isset($_SESSION['userid'])) {
 ***********************************-->
 
 <?php include 'include/js.php'; ?>
+<!-- Datatable -->
+<script src="vendor/datatables/js/jquery.dataTables.min.js"></script>
+<script src="js/plugins-init/datatables.init.js"></script>
 </body>
 </html>

@@ -12,6 +12,9 @@ if (!isset($_SESSION['userid'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Add Product | PO SHUN Admin</title>
+    <!-- Summernote -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.21.0/ckeditor.js" integrity="sha512-ff67djVavIxfsnP13CZtuHqf7VyX62ZAObYle+JlObWZvS4/VQkNVaFBOO6eyx2cum8WtiZ0pqyxLCQKC7bjcg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
     <?php include 'include/css.php'; ?>
 </head>
 <body>
@@ -54,19 +57,18 @@ if (!isset($_SESSION['userid'])) {
                         </div>
                         <div class="card-body">
                             <div class="basic-form">
-                                <form>
+                                <form action="" method="post" enctype="multipart/form-data">
                                     <div class="form-row">
                                         <div class="form-group col-md-12">
                                             <label>Category</label>
-                                            <input type="text" class="form-control" placeholder="">
+                                            <select class="form-control default-select" name="category_id" required>
+                                                <option>1</option>
+                                                <option>2</option>
+                                            </select>
                                         </div>
                                         <div class="form-group col-md-12">
-                                            <label>Store</label>
-                                            <input type="text" class="form-control" placeholder="">
-                                        </div>
-                                        <div class="form-group col-md-12">
-                                            <label>Product Number</label>
-                                            <input type="text" class="form-control" placeholder="">
+                                            <label>Product Code</label>
+                                            <input type="text" class="form-control" name="product_code" placeholder="" required>
                                         </div>
                                         <div class="form-group col-md-12">
                                             <label>Product Image</label>
@@ -75,14 +77,14 @@ if (!isset($_SESSION['userid'])) {
                                                     <span class="input-group-text">Upload</span>
                                                 </div>
                                                 <div class="custom-file">
-                                                    <input type="file" class="custom-file-input" multiple>
+                                                    <input type="file" class="custom-file-input" name="image" required>
                                                     <label class="custom-file-label">Choose file</label>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-group col-md-12">
                                             <label>Description</label>
-                                            <textarea class="form-control" rows="4" id="comment"></textarea>
+                                            <textarea class="form-control" rows="4" id="comment" name="description" required></textarea>
                                         </div>
                                     </div>
                                     <div class="text-center">
@@ -108,5 +110,14 @@ if (!isset($_SESSION['userid'])) {
 ***********************************-->
 
 <?php include 'include/js.php'; ?>
+
+<!-- Summernote -->
+<script src="vendor/summernote/js/summernote.min.js"></script>
+<!-- Summernote init -->
+<script src="js/plugins-init/summernote-init.js"></script>
+
+<script>
+    CKEDITOR.replace('description');
+</script>
 </body>
 </html>

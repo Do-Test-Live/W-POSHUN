@@ -30,16 +30,6 @@
                     <li><a href="Product">Product List</a></li>
                 </ul>
             </li>
-            <li>
-                <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-                    <i class="flaticon-381-network"></i>
-                    <span class="nav-text">Admin</span>
-                </a>
-                <ul aria-expanded="false">
-                    <li><a href="Add-Admin">Add Admin</a></li>
-                    <li><a href="Admin">Admin List & Role</a></li>
-                </ul>
-            </li>
         </ul>
     </div>
 </div>

@@ -54,11 +54,23 @@ if (!isset($_SESSION['userid'])) {
                         </div>
                         <div class="card-body">
                             <div class="basic-form">
-                                <form>
+                                <form action="" method="post" enctype="multipart/form-data">
                                     <div class="form-row">
                                         <div class="form-group col-md-12">
                                             <label>Category Name</label>
-                                            <input type="text" class="form-control" placeholder="">
+                                            <input type="text" name="category_name" class="form-control" placeholder="" required>
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <label>Category Icon</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">Upload</span>
+                                                </div>
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input" name="icon" required>
+                                                    <label class="custom-file-label">Choose file</label>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="form-group col-md-12">
                                             <label>Category Image</label>
@@ -67,14 +79,14 @@ if (!isset($_SESSION['userid'])) {
                                                     <span class="input-group-text">Upload</span>
                                                 </div>
                                                 <div class="custom-file">
-                                                    <input type="file" class="custom-file-input" multiple>
+                                                    <input type="file" class="custom-file-input" name="image" required>
                                                     <label class="custom-file-label">Choose file</label>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="text-center">
-                                        <button type="submit" class="btn btn-primary w-50">Submit</button>
+                                        <button type="submit" class="btn btn-primary w-50" name="addCategory">Submit</button>
                                     </div>
                                 </form>
                             </div>
