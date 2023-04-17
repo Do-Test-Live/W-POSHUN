@@ -5,7 +5,7 @@
     <a href="Dashboard" class="brand-logo">
         <div class="header-left">
             <div class="dashboard_bar">
-                Your Logo
+                PO SHUN
             </div>
         </div>
     </a>
@@ -34,7 +34,7 @@
                         $url=$_SERVER["REQUEST_URI"];
                         $str = substr($url, strrpos($url, '/') + 1);
                         $string = str_replace("-", " ", $str);
-                        echo $string;
+                        echo strtok($string, '?');
                         ?>
                         <span>Welcome to Admin!</span>
                     </div>
@@ -44,7 +44,7 @@
                         <a class="nav-link" href="javascript:void(0)" role="button" data-toggle="dropdown">
                             <img src="images/profile/17.jpg" width="20" alt=""/>
                             <div class="header-info">
-                                <span class="text-black"><strong>Brian Lee</strong></span>
+                                <span class="text-black"><strong>Super Admin</strong></span>
                                 <p class="fs-12 mb-0">Admin</p>
                             </div>
                         </a>
