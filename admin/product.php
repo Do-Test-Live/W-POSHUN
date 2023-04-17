@@ -61,9 +61,8 @@ if (!isset($_SESSION['userid'])) {
                                     <tr>
                                         <th>SL</th>
                                         <th>Category</th>
-                                        <th>Store</th>
                                         <th>Name</th>
-                                        <th>Product Number</th>
+                                        <th>Code</th>
                                         <th>Description</th>
                                         <th>Image</th>
                                         <th>Insert Date</th>
@@ -72,23 +71,53 @@ if (!isset($_SESSION['userid'])) {
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <th>Category1</th>
-                                        <th>Store1</th>
-                                        <th>Name1</th>
-                                        <td>Tiger Nixon</td>
-                                        <td>Tiger Nixon</td>
-                                        <td>Image</td>
-                                        <td>2011/04/25</td>
-                                        <td>Active</td>
-                                        <td>
-                                            <div class="d-flex">
-                                                <a href="#" class="btn btn-primary shadow btn-xs sharp mr-1"><i class="fa fa-pencil"></i></a>
-                                                <a href="#" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                    <?php
+                                    $product = $db_handle->runQuery("SELECT * FROM category,product where product.category_id = category.id order by product.id desc");
+                                    $row_count = $db_handle->numRows("SELECT * FROM category,product where product.category_id = category.id order by product.id desc");
+
+                                    for ($i = 0; $i < $row_count; $i++) {
+                                        ?>
+                                        <tr>
+                                            <td><?php echo $i + 1; ?></td>
+                                            <td><?php echo $product[$i]["c_name"]; ?></td>
+                                            <td><?php echo $product[$i]["p_name"]; ?></td>
+                                            <td><?php echo $product[$i]["product_code"]; ?></td>
+                                            <td><?php echo $product[$i]["description"]; ?></td>
+                                            <?php
+                                            $date = date_create($product[$i]["inserted_at"]);
+                                            $date_formatted = date_format($date, "d F y, g:i A");
+                                            ?>
+                                            <td><?php echo $date_formatted; ?></td>
+                                            <?php
+                                            $date = date_create($product[$i]["updated_at"]);
+                                            $date_formatted = date_format($date, "d F y, g:i A");
+                                            ?>
+                                            <td><?php echo $date_formatted; ?></td>
+                                            <?php
+                                            if ($product[$i]["status"] == 1) {
+                                                ?>
+                                                <td>Active</td>
+                                                <?php
+                                            } else {
+                                                ?>
+                                                <td>Deactive</td>
+                                                <?php
+                                            }
+                                            ?>
+                                            <td>
+                                                <div class="d-flex">
+                                                    <a href="Product?productID=<?php echo $product[$i]["id"]; ?>"
+                                                       class="btn btn-primary shadow btn-xs sharp mr-1"><i
+                                                                class="fa fa-pencil"></i></a>
+                                                    <a onclick="productDelete(<?php echo $product[$i]["id"]; ?>);"
+                                                       class="btn btn-danger shadow btn-xs sharp"><i
+                                                                class="fa fa-trash"></i></a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <?php
+                                    }
+                                    ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -113,5 +142,56 @@ if (!isset($_SESSION['userid'])) {
 <!-- Datatable -->
 <script src="vendor/datatables/js/jquery.dataTables.min.js"></script>
 <script src="js/plugins-init/datatables.init.js"></script>
+
+<script>
+    function productDelete(id) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    type: 'get',
+                    url: 'Delete',
+                    data: {
+                        productId: id
+                    },
+                    success: function (data) {
+                        if (data.toString() === 'P') {
+                            Swal.fire(
+                                'Not Deleted!',
+                                'Your have store in this category.',
+                                'error'
+                            ).then((result) => {
+                                window.location = 'Product';
+                            });
+                        } else {
+                            Swal.fire(
+                                'Deleted!',
+                                'Your file has been deleted.',
+                                'success'
+                            ).then((result) => {
+                                window.location = 'Product';
+                            });
+                        }
+                    }
+                });
+            } else {
+                Swal.fire(
+                    'Cancelled!',
+                    'Your Product is safe :)',
+                    'error'
+                ).then((result) => {
+                    window.location = 'Product';
+                });
+            }
+        })
+    }
+</script>
 </body>
 </html>

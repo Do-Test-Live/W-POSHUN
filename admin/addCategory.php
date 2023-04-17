@@ -54,7 +54,7 @@ if (!isset($_SESSION['userid'])) {
                         </div>
                         <div class="card-body">
                             <div class="basic-form">
-                                <form action="" method="post" enctype="multipart/form-data">
+                                <form action="Insert" method="post" enctype="multipart/form-data">
                                     <div class="form-row">
                                         <div class="form-group col-md-12">
                                             <label>Category Name</label>

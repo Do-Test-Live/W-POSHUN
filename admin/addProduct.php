@@ -57,14 +57,25 @@ if (!isset($_SESSION['userid'])) {
                         </div>
                         <div class="card-body">
                             <div class="basic-form">
-                                <form action="" method="post" enctype="multipart/form-data">
+                                <form action="Insert" method="post" enctype="multipart/form-data">
                                     <div class="form-row">
                                         <div class="form-group col-md-12">
                                             <label>Category</label>
                                             <select class="form-control default-select" name="category_id" required>
-                                                <option>1</option>
-                                                <option>2</option>
+                                                <?php
+                                                $cat = $db_handle->runQuery("SELECT * FROM `category`");
+                                                $row_count = $db_handle->numRows("SELECT * FROM `category`");
+                                                for ($i = 0; $i < $row_count; $i++) {
+                                                    ?>
+                                                    <option value="<?php echo $cat[$i]["id"]; ?>"><?php echo $cat[$i]["id"]; ?> <?php echo $cat[$i]["c_name"]; ?></option>
+                                                    <?php
+                                                }
+                                                ?>
                                             </select>
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <label>Product Name</label>
+                                            <input type="text" class="form-control" name="product_name" placeholder="" required>
                                         </div>
                                         <div class="form-group col-md-12">
                                             <label>Product Code</label>
@@ -77,7 +88,7 @@ if (!isset($_SESSION['userid'])) {
                                                     <span class="input-group-text">Upload</span>
                                                 </div>
                                                 <div class="custom-file">
-                                                    <input type="file" class="custom-file-input" name="image" required>
+                                                    <input type="file" class="custom-file-input" name="product_image" required>
                                                     <label class="custom-file-label">Choose file</label>
                                                 </div>
                                             </div>
@@ -88,7 +99,7 @@ if (!isset($_SESSION['userid'])) {
                                         </div>
                                     </div>
                                     <div class="text-center">
-                                        <button type="submit" class="btn btn-primary w-50">Submit</button>
+                                        <button type="submit" name="addProduct" class="btn btn-primary w-50">Submit</button>
                                     </div>
                                 </form>
                             </div>

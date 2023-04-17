@@ -62,25 +62,56 @@ if (!isset($_SESSION['userid'])) {
                                         <th>SL</th>
                                         <th>Name</th>
                                         <th>Image</th>
+                                        <th>Icon</th>
                                         <th>Insert Date</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Tiger Nixon</td>
-                                        <td>Image</td>
-                                        <td>2011/04/25</td>
-                                        <td>Active</td>
-                                        <td>
-                                            <div class="d-flex">
-                                                <a href="#" class="btn btn-primary shadow btn-xs sharp mr-1"><i class="fa fa-pencil"></i></a>
-                                                <a href="#" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                    <?php
+                                    $category_data = $db_handle->runQuery("SELECT * FROM category order by id desc");
+                                    $row_count = $db_handle->numRows("SELECT * FROM category order by id desc");
+
+                                    for ($i = 0; $i < $row_count; $i++) {
+                                        ?>
+                                        <tr>
+                                            <td><?php echo $i + 1; ?></td>
+                                            <td><?php echo $category_data[$i]["c_name"]; ?></td>
+                                            <td><a href="../<?php echo $category_data[$i]["image"]; ?>"
+                                                   target="_blank">Image</a></td>
+                                            <td><a href="../<?php echo $category_data[$i]["icon"]; ?>"
+                                                   target="_blank">icon</a></td>
+                                            <?php
+                                            $date = date_create($category_data[$i]["inserted_at"]);
+                                            $date_formatted = date_format($date, "d F y, g:i A");
+                                            ?>
+                                            <td><?php echo $date_formatted; ?></td>
+                                            <?php
+                                            if ($category_data[$i]["status"] == 1) {
+                                                ?>
+                                                <td>Active</td>
+                                                <?php
+                                            } else {
+                                                ?>
+                                                <td>Deactive</td>
+                                                <?php
+                                            }
+                                            ?>
+                                            <td>
+                                                <div class="d-flex">
+                                                    <a href="Category?catId=<?php echo $category_data[$i]["id"]; ?>"
+                                                       class="btn btn-primary shadow btn-xs sharp mr-1"><i
+                                                                class="fa fa-pencil"></i></a>
+                                                    <a onclick="categoryDelete(<?php echo $category_data[$i]["id"]; ?>);"
+                                                       class="btn btn-danger shadow btn-xs sharp"><i
+                                                                class="fa fa-trash"></i></a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <?php
+                                    }
+                                    ?>
                                     </tbody>
                                 </table>
                             </div>
