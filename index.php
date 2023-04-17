@@ -62,17 +62,17 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 col-md-2 col-md-6 col-xs-6">
-                    <a class="biolife-logo" href="index.html"><img alt="biolife logo" height="36"
+                    <a class="biolife-logo" href="Home"><img alt="biolife logo" height="36"
                                                                    src="assets/images/organic-4.png" width="135"></a>
                 </div>
                 <div class="col-lg-6 col-md-7 hidden-sm hidden-xs">
                     <div class="primary-menu">
                         <ul class="menu biolife-menu clone-main-menu clone-primary-menu" data-menuname="main menu"
                             id="primary-menu">
-                            <li class="menu-item"><a href="index.html">Home</a></li>
-                            <li class="menu-item"><a href="shop.html">Products</a></li>
-                            <li class="menu-item"><a href="about-us.html">About us</a></li>
-                            <li class="menu-item"><a href="contact.html">Contact</a></li>
+                            <li class="menu-item"><a href="Home">Home</a></li>
+                            <li class="menu-item"><a href="Shop">Products</a></li>
+                            <li class="menu-item"><a href="About">About us</a></li>
+                            <li class="menu-item"><a href="Contact">Contact</a></li>
                         </ul>
                     </div>
                 </div>
