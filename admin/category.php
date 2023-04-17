@@ -48,7 +48,91 @@ if (!isset($_SESSION['userid'])) {
         <!-- row -->
         <div class="container-fluid">
             <!-- Category List -->
-            <div class="row">
+            <div class="row"><?php if (isset($_GET['catId'])) { ?>
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Update Category</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="basic-form">
+                                    <form method="post" action="Update" enctype="multipart/form-data">
+
+                                        <?php $data = $db_handle->runQuery("SELECT * FROM category where id={$_GET['catId']}"); ?>
+
+                                        <input type="hidden" value="<?php echo $data[0]["id"]; ?>" name="id" required>
+
+                                        <div class="mb-3 row">
+                                            <label class="col-sm-3 col-form-label">Category Name</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" name="c_name"
+                                                       placeholder="Category Name"
+                                                       value="<?php echo $data[0]["c_name"]; ?>" required>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3 row">
+                                            <label class="col-sm-3 col-form-label">Image</label>
+                                            <div class="col-sm-6">
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">Upload</span>
+                                                    </div>
+                                                    <div class="custom-file">
+                                                        <input type="file" class="custom-file-input" name="image" accept="image/png, image/jpeg, image/jpg">
+                                                        <label class="custom-file-label">Choose file (png, jpg, jpeg)</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <img src="../<?php echo $data[0]["image"]; ?>" class="img-fluid"
+                                                     alt=""/>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3 row">
+                                            <label class="col-sm-3 col-form-label">Icon</label>
+                                            <div class="col-sm-6">
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">Upload</span>
+                                                    </div>
+                                                    <div class="custom-file">
+                                                        <input type="file" class="custom-file-input" name="icon" accept="image/png, image/jpeg, image/jpg">
+                                                        <label class="custom-file-label">Choose file (png, jpg, jpeg)</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <img src="../<?php echo $data[0]["icon"]; ?>" class="img-fluid"
+                                                     alt=""/>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3 row">
+                                            <label class="col-sm-3 col-form-label">Status</label>
+                                            <div class="col-sm-9">
+                                                <select class="default-select  form-control wide" name="status"
+                                                        required>
+                                                    <option value="1" <?php echo ($data[0]["status"] == 1) ? "selected" : ""; ?>>
+                                                        Show
+                                                    </option>
+                                                    <option value="0" <?php echo ($data[0]["status"] == 0) ? "selected" : ""; ?>>
+                                                        Hide
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3 row">
+                                            <div class="col-sm-6 mx-auto">
+                                                <button type="submit" class="btn btn-primary w-25"
+                                                        name="updateCategory">Submit
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <?php } else { ?>
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
@@ -118,6 +202,9 @@ if (!isset($_SESSION['userid'])) {
                         </div>
                     </div>
                 </div>
+                    <?php
+                }
+                ?>
             </div>
         </div>
     </div>

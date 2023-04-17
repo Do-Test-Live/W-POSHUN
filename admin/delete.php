@@ -14,7 +14,8 @@ if (isset($_GET['catId'])) {
 
     if ($row == 0) {
         $data = $db_handle->runQuery("select * FROM `category` WHERE id='{$_GET['catId']}'");
-        unlink($data[0]['image']);
+        unlink('../'.$data[0]['image']);
+        unlink('../'.$data[0]['icon']);
         $db_handle->insertQuery("delete from category where id=" . $_GET['catId'] . "");
         echo 'success';
     } else {
@@ -23,6 +24,9 @@ if (isset($_GET['catId'])) {
 }
 
 if(isset($_GET['productId'])){
+    $data = $db_handle->runQuery("select * FROM `product` WHERE id='{$_GET['productId']}'");
+    unlink('../'.$data[0]['p_image']);
+
     $db_handle->insertQuery("delete from product where id=" . $_GET['productId'] . "");
     echo 'success';
 }
