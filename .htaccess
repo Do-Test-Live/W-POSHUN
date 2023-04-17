@@ -1,0 +1,14 @@
+ErrorDocument 404 http://localhost/W-POSHUN/404.php
+
+RewriteEngine on
+
+RewriteRule ^Home index.php [NE,L]
+
+RewriteRule ^Shop shop.php [NE,L]
+
+RewriteRule ^Product product.php [NE,L]
+
+RewriteRule ^About about-us.php [NE,L]
+
+RewriteRule ^Contact contact.php [NE,L]
+
