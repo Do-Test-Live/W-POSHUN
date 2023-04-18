@@ -426,7 +426,7 @@ $db_handle = new DBController();
         <div class="container z-index-20 xs-margin-top-80px sm-margin-top-0">
             <div class="row">
 
-                <div class="col-lg-4 sm-margin-top-80px ">
+                <!--<div class="col-lg-4 sm-margin-top-80px ">
                     <div class="row">
                         <div class="col-lg-12 col-md-4 col-sm-4 col-xs-12">
                             <div class="biolife-banner style-05 biolife-banner__style-05">
@@ -465,15 +465,15 @@ $db_handle = new DBController();
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>-->
 
-                <div class="col-lg-8 sm-margin-top-84px">
+                <div class="col-lg-12 sm-margin-top-84px">
                     <div class="advance-product-box">
                         <div class="biolife-title-box bold-style biolife-title-box__bold-style mobile-tiny lg-margin-bottom-26px-im">
                             <h3 class="title">Featured Products</h3>
                         </div>
                         <ul class="products-list biolife-carousel nav-top-right nav-main-color nav-none-on-mobile eq-height-contain"
-                            data-slick='{"rows":2 ,"arrows":true,"dots":false,"infinite":true,"speed":400,"slidesMargin":0,"slidesToShow":3, "responsive":[{"breakpoint":1200, "settings":{ "slidesToShow": 4}},{"breakpoint":992, "settings":{ "slidesToShow": 3, "slidesMargin": 20}},{"breakpoint":768, "settings":{ "slidesToShow": 2, "slidesMargin": 15}}]}'>
+                            data-slick='{"rows":2 ,"arrows":true,"dots":false,"infinite":true,"speed":400,"slidesMargin":0,"slidesToShow":4, "responsive":[{"breakpoint":1200, "settings":{ "slidesToShow": 4}},{"breakpoint":992, "settings":{ "slidesToShow": 3, "slidesMargin": 20}},{"breakpoint":768, "settings":{ "slidesToShow": 2, "slidesMargin": 15}}]}'>
                             <?php
                             $query = "SELECT * FROM category,product where product.category_id = category.id ORDER BY RAND() limit 10";
                             $product = $db_handle->runQuery($query);
