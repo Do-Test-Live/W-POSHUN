@@ -154,8 +154,10 @@ if (!isset($_SESSION['userid'])) {
                                     </thead>
                                     <tbody>
                                     <?php
-                                    $category_data = $db_handle->runQuery("SELECT * FROM category order by id desc");
-                                    $row_count = $db_handle->numRows("SELECT * FROM category order by id desc");
+                                    $query="SELECT * FROM category order by id desc";
+
+                                    $category_data = $db_handle->runQuery($query);
+                                    $row_count = $db_handle->numRows($query);
 
                                     for ($i = 0; $i < $row_count; $i++) {
                                         ?>

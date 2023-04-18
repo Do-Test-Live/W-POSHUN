@@ -1,3 +1,7 @@
+<?php
+require_once("admin/include/dbController.php");
+$db_handle = new DBController();
+?>
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 <head>
@@ -63,7 +67,7 @@
             <div class="row">
                 <div class="col-lg-3 col-md-2 col-md-6 col-xs-6">
                     <a class="biolife-logo" href="Home"><img alt="biolife logo" height="36"
-                                                                   src="assets/images/organic-4.png" width="135"></a>
+                                                             src="assets/images/organic-4.png" width="135"></a>
                 </div>
                 <div class="col-lg-6 col-md-7 hidden-sm hidden-xs">
                     <div class="primary-menu">
@@ -114,37 +118,26 @@
                             </div>
                             <div class="wrap-menu">
                                 <ul class="menu clone-main-menu">
-                                    <li class="menu-item">
-                                        <a class="menu-name" data-title="Fruit & Nut Gifts" href="#"><i
-                                                class="biolife-icon icon-fruits"></i>Rechargeable Mini Metal Torch</a>
-                                    </li>
-                                    <li class="menu-item">
-                                        <a class="menu-name" data-title="Vegetables" href="#"><i
-                                                class="biolife-icon icon-broccoli-1"></i>Rechargeable Spotlight</a>
-                                    </li>
-                                    <li class="menu-item">
-                                        <a class="menu-name" data-title="Fresh Berries" href="#"><i
-                                                class="biolife-icon icon-grape"></i>Rechargeable Search Light (Plastic)</a>
-                                    </li>
-                                    <li class="menu-item"><a class="menu-name" data-title="Ocean Foods" href="#"><i
-                                            class="biolife-icon icon-fish"></i>Rechargeable Machined Aircraft Aluminium
-                                        Torch</a></li>
-                                    <li class="menu-item">
-                                        <a class="menu-name" data-title="Butter & Eggs" href="#"><i
-                                                class="biolife-icon icon-honey"></i>Rechargeable Emergency Lantern
-                                            (Plastic)</a>
-                                    </li>
-                                    <li class="menu-item"><a class="menu-title" href="#"><i
-                                            class="biolife-icon icon-fast-food"></i>Rechargeable Emergency Fluorescent
-                                        Lamp</a></li>
-                                    <li class="menu-item"><a class="menu-title" href="#"><i
-                                            class="biolife-icon icon-beef"></i>Rechargeable Headlight (Plastic)</a></li>
-                                    <li class="menu-item"><a class="menu-title" href="#"><i
-                                            class="biolife-icon icon-onions"></i>LED Bulb</a></li>
-                                    <li class="menu-item"><a class="menu-title" href="#"><i
-                                            class="biolife-icon icon-avocado"></i>Radio</a></li>
-                                    <li class="menu-item"><a class="menu-title" href="#"><i
-                                            class="biolife-icon icon-contain"></i>Other Home Appliance</a></li>
+                                    <?php
+                                    $query = "SELECT * FROM category order by id desc";
+
+                                    $category_data = $db_handle->runQuery($query);
+                                    $row_count = $db_handle->numRows($query);
+
+                                    for ($i = 0; $i < $row_count; $i++) {
+                                        ?>
+                                        <li class="menu-item">
+                                            <a class="menu-name" data-title="Fruit & Nut Gifts"
+                                               href="Shop?category_id=<?php echo $category_data[$i]["id"]; ?>">
+                                                <img src="<?php echo $category_data[$i]["icon"]; ?>" class="img-fluid"
+                                                     style="width: 30px;margin-right: 0.25em;border: 1px solid black;padding: 3px"
+                                                     alt=""/>
+                                                <?php echo $category_data[$i]["c_name"]; ?>
+                                            </a>
+                                        </li>
+                                        <?php
+                                    }
+                                    ?>
                                 </ul>
                             </div>
                         </div>
@@ -162,7 +155,7 @@
                                         <h3 class="second-line">High Quality</h3>
                                         <p class="third-line">Products to our Customers</p>
                                         <p class="buttons">
-                                            <a class="btn btn-thin" href="#">View Products</a>
+                                            <a class="btn btn-thin" href="Shop">View Products</a>
                                         </p>
                                     </div>
                                 </div>
@@ -175,7 +168,7 @@
                                         <h3 class="second-line">High Quality</h3>
                                         <p class="third-line">Products to our Customers</p>
                                         <p class="buttons">
-                                            <a class="btn btn-thin" href="#">View Products</a>
+                                            <a class="btn btn-thin" href="Shop">View Products</a>
                                         </p>
                                     </div>
                                 </div>
@@ -188,20 +181,7 @@
                                         <h3 class="second-line">High Quality</h3>
                                         <p class="third-line">Products to our Customers</p>
                                         <p class="buttons">
-                                            <a class="btn btn-thin" href="#">View Products</a>
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="slide-contain slider-opt04__layout01">
-                                    <div class="media"></div>
-                                    <div class="text-content">
-                                        <i class="first-line">Pomegranate</i>
-                                        <h3 class="second-line">Fresh Juice 100% Organic</h3>
-                                        <p class="third-line">A blend of freshly squeezed green apple & fruits</p>
-                                        <p class="buttons">
-                                            <a class="btn btn-thin" href="#">View lookbook</a>
+                                            <a class="btn btn-thin" href="Shop">View Products</a>
                                         </p>
                                     </div>
                                 </div>
@@ -297,7 +277,8 @@
             <div class="container">
                 <h4 class="title">About Us</h4>
                 <div class="text-wraper">
-                    <p class="text-info">Po Shun Corporation has been established in Hong Kong since 1980, with 30 years'
+                    <p class="text-info">Po Shun Corporation has been established in Hong Kong since 1980, with 30
+                        years'
                         experience and expertise</p>
                     <p class="qt-text">
                         In audio manufacturing, today our company not only specialized in audio items, but is also
@@ -323,136 +304,44 @@
 
                 <ul class="biolife-carousel nav-center-bold nav-none-on-mobile"
                     data-slick='{"arrows":true,"dots":false,"infinite":true,"autoplay":true,"speed":400,"slidesMargin":30,"slidesToShow":4, "responsive":[{"breakpoint":1200, "settings":{ "slidesToShow": 3}},{"breakpoint":992, "settings":{ "slidesToShow": 3}},{"breakpoint":768, "settings":{ "slidesToShow": 2}}, {"breakpoint":500, "settings":{ "slidesToShow": 1}}]}'>
-                    <li>
-                        <div class="biolife-cat-box-item">
-                            <div class="cat-thumb">
-                                <a class="cat-link" href="#">
-                                    <img alt="" height="185" src="assets/images/home-04/cat-thumb01.jpg" width="277">
+
+                    <?php
+                    $query = "SELECT * FROM category order by id desc";
+
+                    $category_data = $db_handle->runQuery($query);
+                    $row_count = $db_handle->numRows($query);
+
+                    for ($i = 0; $i < $row_count; $i++) {
+                        ?>
+
+                        <li>
+                            <div class="biolife-cat-box-item">
+                                <div class="cat-thumb">
+                                    <a class="cat-link" href="Shop?category_id=<?php echo $category_data[$i]["id"]; ?>">
+                                        <img alt="" height="185" src="<?php echo $category_data[$i]["image"]; ?>"
+                                             width="277">
+                                    </a>
+                                </div>
+                                <a class="cat-info" href="Shop?category_id=<?php echo $category_data[$i]["id"]; ?>">
+                                    <h4 class="cat-name"><?php echo $category_data[$i]["c_name"]; ?></h4>
+                                    <span class="cat-number">
+                                    (
+                                    <?php
+                                    $query = "SELECT * FROM product where category_id = {$category_data[$i]["id"]} order by product.id desc";
+                                    $row = $db_handle->numRows($query);
+                                    if ($row > 1)
+                                        echo $row . ' items';
+                                    else
+                                        echo $row . ' item';
+                                    ?>
+                                    )
+                                </span>
                                 </a>
                             </div>
-                            <a class="cat-info" href="#">
-                                <h4 class="cat-name">Rechargeable Mini Metal Torch</h4>
-                                <span class="cat-number">(3 items)</span>
-                            </a>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="biolife-cat-box-item">
-                            <div class="cat-thumb">
-                                <a class="cat-link" href="#">
-                                    <img alt="" height="185" src="assets/images/home-04/cat-thumb02.jpg" width="277">
-                                </a>
-                            </div>
-                            <a class="cat-info" href="#">
-                                <h4 class="cat-name">Rechargeable Spotlight</h4>
-                                <span class="cat-number">(3 items)</span>
-                            </a>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="biolife-cat-box-item">
-                            <div class="cat-thumb">
-                                <a class="cat-link" href="#">
-                                    <img alt="" height="185" src="assets/images/home-04/cat-thumb03.jpg" width="277">
-                                </a>
-                            </div>
-                            <a class="cat-info" href="#">
-                                <h4 class="cat-name">Rechargeable Search Light (Plastic)</h4>
-                                <span class="cat-number">(10 items)</span>
-                            </a>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="biolife-cat-box-item">
-                            <div class="cat-thumb">
-                                <a class="cat-link" href="#">
-                                    <img alt="" height="185" src="assets/images/home-04/cat-thumb04.jpg" width="277">
-                                </a>
-                            </div>
-                            <a class="cat-info" href="#">
-                                <h4 class="cat-name">Rechargeable Machined Aircraft Aluminium Torch</h4>
-                                <span class="cat-number">(6 items)</span>
-                            </a>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="biolife-cat-box-item">
-                            <div class="cat-thumb">
-                                <a class="cat-link" href="#">
-                                    <img alt="" height="185" src="assets/images/home-04/cat-thumb01.jpg" width="277">
-                                </a>
-                            </div>
-                            <a class="cat-info" href="#">
-                                <h4 class="cat-name">Rechargeable Emergency Lantern (Plastic)</h4>
-                                <span class="cat-number">(11 items)</span>
-                            </a>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="biolife-cat-box-item">
-                            <div class="cat-thumb">
-                                <a class="cat-link" href="#">
-                                    <img alt="" height="185" src="assets/images/home-04/cat-thumb02.jpg" width="277">
-                                </a>
-                            </div>
-                            <a class="cat-info" href="#">
-                                <h4 class="cat-name">Rechargeable Emergency Fluorescent Lamp</h4>
-                                <span class="cat-number">(1 item)</span>
-                            </a>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="biolife-cat-box-item">
-                            <div class="cat-thumb">
-                                <a class="cat-link" href="#">
-                                    <img alt="" height="185" src="assets/images/home-04/cat-thumb03.jpg" width="277">
-                                </a>
-                            </div>
-                            <a class="cat-info" href="#">
-                                <h4 class="cat-name">Rechargeable Headlight (Plastic)</h4>
-                                <span class="cat-number">(2 items)</span>
-                            </a>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="biolife-cat-box-item">
-                            <div class="cat-thumb">
-                                <a class="cat-link" href="#">
-                                    <img alt="" height="185" src="assets/images/home-04/cat-thumb04.jpg" width="277">
-                                </a>
-                            </div>
-                            <a class="cat-info" href="#">
-                                <h4 class="cat-name">LED Bulb</h4>
-                                <span class="cat-number">(2 items)</span>
-                            </a>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="biolife-cat-box-item">
-                            <div class="cat-thumb">
-                                <a class="cat-link" href="#">
-                                    <img alt="" height="185" src="assets/images/home-04/cat-thumb04.jpg" width="277">
-                                </a>
-                            </div>
-                            <a class="cat-info" href="#">
-                                <h4 class="cat-name">Radio</h4>
-                                <span class="cat-number">(5 items)</span>
-                            </a>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="biolife-cat-box-item">
-                            <div class="cat-thumb">
-                                <a class="cat-link" href="#">
-                                    <img alt="" height="185" src="assets/images/home-04/cat-thumb04.jpg" width="277">
-                                </a>
-                            </div>
-                            <a class="cat-info" href="#">
-                                <h4 class="cat-name">Other Home Appliance</h4>
-                                <span class="cat-number">(3 items)</span>
-                            </a>
-                        </div>
-                    </li>
+                        </li>
+                        <?php
+                    }
+                    ?>
                 </ul>
             </div>
         </div>
@@ -469,214 +358,39 @@
                         <div class="tab-contain active" id="tab01_1st">
                             <ul class="products-list biolife-carousel nav-center-02 nav-none-on-mobile eq-height-contain"
                                 data-slick='{"rows":1 ,"arrows":true,"dots":false,"infinite":true,"speed":400,"slidesMargin":10,"slidesToShow":4, "responsive":[{"breakpoint":1200, "settings":{ "slidesToShow": 4}},{"breakpoint":992, "settings":{ "slidesToShow": 3, "slidesMargin":20}},{"breakpoint":768, "settings":{ "slidesToShow": 2, "rows":2, "slidesMargin":15}}]}'>
-                                <li class="product-item">
-                                    <div class="contain-product layout-default">
-                                        <div class="product-thumb">
-                                            <a class="link-to-product" href="#">
-                                                <img alt="Vegetables" class="product-thumnail" height="270"
-                                                     src="assets/images/products/p-05.jpg" width="270">
-                                            </a>
-                                            <a class="lookup btn_call_quickview" href="#"><i
-                                                    class="biolife-icon icon-search"></i></a>
-                                        </div>
-                                        <div class="info">
-                                            <b class="categories">Rechargeable Mini Metal Torch</b>
-                                            <h4 class="product-title"><a class="pr-name" href="#">Rechargeable LED Mini
-                                                Metal Torch</a></h4>
-                                            <div class="price ">
-                                                <ins><span class="price-amount"><span class="currencySymbol">£</span>85.00</span>
-                                                </ins>
+                                <?php
+                                $query = "SELECT * FROM category,product where product.category_id = category.id ORDER BY RAND() limit 10";
+                                $product = $db_handle->runQuery($query);
+                                $row_count = $db_handle->numRows($query);
+
+                                for ($i = 0; $i < $row_count; $i++) {
+                                    ?>
+                                    <li class="product-item">
+                                        <div class="contain-product layout-default">
+                                            <div class="product-thumb">
+                                                <a class="link-to-product"
+                                                   href="Product?product_id=<?php echo $product[$i]["id"]; ?>">
+                                                    <img alt="Vegetables" class="product-thumnail" height="270"
+                                                         src="<?php echo $product[$i]["p_image"]; ?>" width="270">
+                                                </a>
+                                            </div>
+                                            <div class="info">
+                                                <b class="categories"><?php echo $product[$i]["c_name"]; ?></b>
+                                                <h4 class="product-title"><a class="pr-name"
+                                                                             href="Product?product_id=<?php echo $product[$i]["id"]; ?>"><?php echo $product[$i]["p_name"]; ?></a>
+                                                </h4>
+                                                <div class="price">
+                                                    <a class="btn add-to-cart-btn"
+                                                       style="background: #e73918;color: white;"
+                                                       href="Product?product_id=<?php echo $product[$i]["id"]; ?>">View
+                                                        Details</a>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </li>
-                                <li class="product-item">
-                                    <div class="contain-product layout-default">
-                                        <div class="product-thumb">
-                                            <a class="link-to-product" href="#">
-                                                <img alt="Vegetables" class="product-thumnail" height="270"
-                                                     src="assets/images/products/p-07.jpg" width="270">
-                                            </a>
-                                            <a class="lookup btn_call_quickview" href="#"><i
-                                                    class="biolife-icon icon-search"></i></a>
-                                        </div>
-                                        <div class="info">
-                                            <b class="categories">Rechargeable Spotlight</b>
-                                            <h4 class="product-title"><a class="pr-name" href="#">Professional
-                                                Rechargeable Spotlight</a></h4>
-                                            <div class="price ">
-                                                <ins><span class="price-amount"><span class="currencySymbol">£</span>85.00</span>
-                                                </ins>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="product-item">
-                                    <div class="contain-product layout-default">
-                                        <div class="product-thumb">
-                                            <a class="link-to-product" href="#">
-                                                <img alt="Vegetables" class="product-thumnail" height="270"
-                                                     src="assets/images/products/p-02.jpg" width="270">
-                                            </a>
-                                            <a class="lookup btn_call_quickview" href="#"><i
-                                                    class="biolife-icon icon-search"></i></a>
-                                        </div>
-                                        <div class="info">
-                                            <b class="categories">Rechargeable Search Light (Plastic)</b>
-                                            <h4 class="product-title"><a class="pr-name" href="#">Searchlight</a></h4>
-                                            <div class="price ">
-                                                <ins><span class="price-amount"><span class="currencySymbol">£</span>85.00</span>
-                                                </ins>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="product-item">
-                                    <div class="contain-product layout-default">
-                                        <div class="product-thumb">
-                                            <a class="link-to-product" href="#">
-                                                <img alt="Vegetables" class="product-thumnail" height="270"
-                                                     src="assets/images/products/p-03.jpg" width="270">
-                                            </a>
-                                            <a class="lookup btn_call_quickview" href="#"><i
-                                                    class="biolife-icon icon-search"></i></a>
-                                        </div>
-                                        <div class="info">
-                                            <b class="categories">Rechargeable Machined Aircraft Aluminium Torch</b>
-                                            <h4 class="product-title"><a class="pr-name" href="#">Metal Rechargeable
-                                                Torch</a></h4>
-                                            <div class="price ">
-                                                <ins><span class="price-amount"><span class="currencySymbol">£</span>85.00</span>
-                                                </ins>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="product-item">
-                                    <div class="contain-product layout-default">
-                                        <div class="product-thumb">
-                                            <a class="link-to-product" href="#">
-                                                <img alt="Vegetables" class="product-thumnail" height="270"
-                                                     src="assets/images/products/p-06.jpg" width="270">
-                                            </a>
-                                            <a class="lookup btn_call_quickview" href="#"><i
-                                                    class="biolife-icon icon-search"></i></a>
-                                        </div>
-                                        <div class="info">
-                                            <b class="categories">Rechargeable Emergency Lantern (Plastic)</b>
-                                            <h4 class="product-title"><a class="pr-name" href="#">Hanging Lantern</a>
-                                            </h4>
-                                            <div class="price ">
-                                                <ins><span class="price-amount"><span class="currencySymbol">£</span>85.00</span>
-                                                </ins>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="product-item">
-                                    <div class="contain-product layout-default">
-                                        <div class="product-thumb">
-                                            <a class="link-to-product" href="#">
-                                                <img alt="Vegetables" class="product-thumnail" height="270"
-                                                     src="assets/images/products/p-20.jpg" width="270">
-                                            </a>
-                                            <a class="lookup btn_call_quickview" href="#"><i
-                                                    class="biolife-icon icon-search"></i></a>
-                                        </div>
-                                        <div class="info">
-                                            <b class="categories">Rechargeable Emergency Fluorescent Lamp</b>
-                                            <h4 class="product-title"><a class="pr-name" href="#">NRechargeable
-                                                Emergency Fluorescent Lamp</a></h4>
-                                            <div class="price ">
-                                                <ins><span class="price-amount"><span class="currencySymbol">£</span>85.00</span>
-                                                </ins>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="product-item">
-                                    <div class="contain-product layout-default">
-                                        <div class="product-thumb">
-                                            <a class="link-to-product" href="#">
-                                                <img alt="Vegetables" class="product-thumnail" height="270"
-                                                     src="assets/images/products/p-19.jpg" width="270">
-                                            </a>
-                                            <a class="lookup btn_call_quickview" href="#"><i
-                                                    class="biolife-icon icon-search"></i></a>
-                                        </div>
-                                        <div class="info">
-                                            <b class="categories">Rechargeable Headlight (Plastic)</b>
-                                            <h4 class="product-title"><a class="pr-name" href="#">Headlight</a>
-                                            </h4>
-                                            <div class="price ">
-                                                <ins><span class="price-amount"><span class="currencySymbol">£</span>85.00</span>
-                                                </ins>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="product-item">
-                                    <div class="contain-product layout-default">
-                                        <div class="product-thumb">
-                                            <a class="link-to-product" href="#">
-                                                <img alt="Vegetables" class="product-thumnail" height="270"
-                                                     src="assets/images/products/p-01.jpg" width="270">
-                                            </a>
-                                            <a class="lookup btn_call_quickview" href="#"><i
-                                                    class="biolife-icon icon-search"></i></a>
-                                        </div>
-                                        <div class="info">
-                                            <b class="categories">Radio</b>
-                                            <h4 class="product-title"><a class="pr-name" href="#">3-Bands Portable
-                                                Radio</a></h4>
-                                            <div class="price ">
-                                                <ins><span class="price-amount"><span class="currencySymbol">£</span>85.00</span>
-                                                </ins>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="product-item">
-                                    <div class="contain-product layout-default">
-                                        <div class="product-thumb">
-                                            <a class="link-to-product" href="#">
-                                                <img alt="Vegetables" class="product-thumnail" height="270"
-                                                     src="assets/images/products/p-22.jpg" width="270">
-                                            </a>
-                                            <a class="lookup btn_call_quickview" href="#"><i
-                                                    class="biolife-icon icon-search"></i></a>
-                                        </div>
-                                        <div class="info">
-                                            <b class="categories">Other Home Appliance</b>
-                                            <h4 class="product-title"><a class="pr-name" href="#">Stainless Steel
-                                                Cordless Kettle</a></h4>
-                                            <div class="price ">
-                                                <ins><span class="price-amount"><span class="currencySymbol">£</span>85.00</span>
-                                                </ins>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="product-item">
-                                    <div class="contain-product layout-default">
-                                        <div class="product-thumb">
-                                            <a class="link-to-product" href="#">
-                                                <img alt="Vegetables" class="product-thumnail" height="270"
-                                                     src="assets/images/products/p-18.jpg" width="270">
-                                            </a>
-                                            <a class="lookup btn_call_quickview" href="#"><i
-                                                    class="biolife-icon icon-search"></i></a>
-                                        </div>
-                                        <div class="info">
-                                            <b class="categories">Other Home Appliance</b>
-                                            <h4 class="product-title"><a class="pr-name" href="#">Dry Iron</a></h4>
-                                            <div class="price ">
-                                                <ins><span class="price-amount"><span class="currencySymbol">£</span>85.00</span>
-                                                </ins>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
+                                    </li>
+                                    <?php
+                                }
+                                ?>
                             </ul>
                         </div>
                     </div>
@@ -692,8 +406,9 @@
                         <div class="media">
                             <div class="img-moving position-1">
                                 <a class="banner-link" href="#"><img
-                                        alt="img msv" height="507" src="assets/images/home-04/bn_promotion-child01.png"
-                                        width="711"></a>
+                                            alt="img msv" height="507"
+                                            src="assets/images/home-04/bn_promotion-child01.png"
+                                            width="711"></a>
                             </div>
                             <div class="img-moving position-2">
                                 <img alt="img msv" height="145" src="assets/images/home-04/bn_promotion-child02.png"
@@ -763,224 +478,41 @@
                         </div>
                         <ul class="products-list biolife-carousel nav-top-right nav-main-color nav-none-on-mobile eq-height-contain"
                             data-slick='{"rows":2 ,"arrows":true,"dots":false,"infinite":true,"speed":400,"slidesMargin":0,"slidesToShow":3, "responsive":[{"breakpoint":1200, "settings":{ "slidesToShow": 4}},{"breakpoint":992, "settings":{ "slidesToShow": 3, "slidesMargin": 20}},{"breakpoint":768, "settings":{ "slidesToShow": 2, "slidesMargin": 15}}]}'>
-                            <li class="product-item">
-                                <div class="contain-product layout-default">
-                                    <div class="product-thumb">
-                                        <a class="link-to-product" href="#">
-                                            <img alt="Vegetables" class="product-thumnail" height="270"
-                                                 src="assets/images/products/p-19.jpg" width="270">
-                                        </a>
-                                        <a class="lookup btn_call_quickview" href="#"><i
-                                                class="biolife-icon icon-search"></i></a>
-                                    </div>
-                                    <div class="info">
-                                        <b class="categories">Rechargeable Mini Metal Torch</b>
-                                        <h4 class="product-title"><a class="pr-name" href="#">Rechargeable LED Mini
-                                            Metal Torch</a></h4>
-                                        <div class="price ">
-                                            <ins><span class="price-amount"><span
-                                                    class="currencySymbol">£</span>85.00</span>
-                                            </ins>
+                            <?php
+                            $query = "SELECT * FROM category,product where product.category_id = category.id ORDER BY RAND() limit 10";
+                            $product = $db_handle->runQuery($query);
+                            $row_count = $db_handle->numRows($query);
+
+                            for ($i = 0; $i < $row_count; $i++) {
+                                ?>
+                                <li class="product-item">
+                                    <div class="contain-product layout-default">
+                                        <div class="product-thumb">
+                                            <a class="link-to-product"
+                                               href="Product?product_id=<?php echo $product[$i]["id"]; ?>">
+                                                <img alt="Vegetables" class="product-thumnail" height="270"
+                                                     src="<?php echo $product[$i]["p_image"]; ?>" width="270">
+                                            </a>
+                                        </div>
+                                        <div class="info">
+                                            <b class="categories"><?php echo $product[$i]["c_name"]; ?></b>
+                                            <h4 class="product-title">
+                                                <a class="pr-name"
+                                                   href="Product?product_id=<?php echo $product[$i]["id"]; ?>">
+                                                    <?php echo $product[$i]["p_name"]; ?>
+                                                </a>
+                                            </h4>
+                                            <div class="price">
+                                                <a class="btn add-to-cart-btn" style="background: #e73918;color: white;"
+                                                   href="Product?product_id=<?php echo $product[$i]["id"]; ?>">View
+                                                    Details</a>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </li>
-                            <li class="product-item">
-                                <div class="contain-product layout-default">
-                                    <div class="product-thumb">
-                                        <a class="link-to-product" href="#">
-                                            <img alt="Vegetables" class="product-thumnail" height="270"
-                                                 src="assets/images/products/p-24.jpg" width="270">
-                                        </a>
-                                        <a class="lookup btn_call_quickview" href="#"><i
-                                                class="biolife-icon icon-search"></i></a>
-                                    </div>
-                                    <div class="info">
-                                        <b class="categories">Rechargeable Spotlight</b>
-                                        <h4 class="product-title"><a class="pr-name" href="#">Professional Rechargeable
-                                            Spotlight</a></h4>
-                                        <div class="price ">
-                                            <ins><span class="price-amount"><span
-                                                    class="currencySymbol">£</span>85.00</span>
-                                            </ins>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="product-item">
-                                <div class="contain-product layout-default">
-                                    <div class="product-thumb">
-                                        <a class="link-to-product" href="#">
-                                            <img alt="Vegetables" class="product-thumnail" height="270"
-                                                 src="assets/images/products/p-03.jpg" width="270">
-                                        </a>
-                                        <a class="lookup btn_call_quickview" href="#"><i
-                                                class="biolife-icon icon-search"></i></a>
-                                    </div>
-                                    <div class="info">
-                                        <b class="categories">Rechargeable Search Light (Plastic)</b>
-                                        <h4 class="product-title"><a class="pr-name" href="#">Searchlight</a></h4>
-                                        <div class="price ">
-                                            <ins><span class="price-amount"><span
-                                                    class="currencySymbol">£</span>85.00</span>
-                                            </ins>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="product-item">
-                                <div class="contain-product layout-default">
-                                    <div class="product-thumb">
-                                        <a class="link-to-product" href="#">
-                                            <img alt="Vegetables" class="product-thumnail" height="270"
-                                                 src="assets/images/products/p-02.jpg" width="270">
-                                        </a>
-                                        <a class="lookup btn_call_quickview" href="#"><i
-                                                class="biolife-icon icon-search"></i></a>
-                                    </div>
-                                    <div class="info">
-                                        <b class="categories">Rechargeable Headlight (Plastic)</b>
-                                        <h4 class="product-title"><a class="pr-name" href="#">Headlight</a>
-                                        </h4>
-                                        <div class="price ">
-                                            <ins><span class="price-amount"><span
-                                                    class="currencySymbol">£</span>85.00</span>
-                                            </ins>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="product-item">
-                                <div class="contain-product layout-default">
-                                    <div class="product-thumb">
-                                        <a class="link-to-product" href="#">
-                                            <img alt="Vegetables" class="product-thumnail" height="270"
-                                                 src="assets/images/products/p-05.jpg" width="270">
-                                        </a>
-                                        <a class="lookup btn_call_quickview" href="#"><i
-                                                class="biolife-icon icon-search"></i></a>
-                                    </div>
-                                    <div class="info">
-                                        <b class="categories">Radio</b>
-                                        <h4 class="product-title"><a class="pr-name" href="#">3-Bands Portable Radio</a>
-                                        </h4>
-                                        <div class="price ">
-                                            <ins><span class="price-amount"><span
-                                                    class="currencySymbol">£</span>85.00</span>
-                                            </ins>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="product-item">
-                                <div class="contain-product layout-default">
-                                    <div class="product-thumb">
-                                        <a class="link-to-product" href="#">
-                                            <img alt="Vegetables" class="product-thumnail" height="270"
-                                                 src="assets/images/products/p-22.jpg" width="270">
-                                        </a>
-                                        <a class="lookup btn_call_quickview" href="#"><i
-                                                class="biolife-icon icon-search"></i></a>
-                                    </div>
-                                    <div class="info">
-                                        <b class="categories">Other Home Appliance</b>
-                                        <h4 class="product-title"><a class="pr-name" href="#">Stainless Steel Cordless
-                                            Kettle</a></h4>
-                                        <div class="price ">
-                                            <ins><span class="price-amount"><span
-                                                    class="currencySymbol">£</span>85.00</span>
-                                            </ins>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="product-item">
-                                <div class="contain-product layout-default">
-                                    <div class="product-thumb">
-                                        <a class="link-to-product" href="#">
-                                            <img alt="Vegetables" class="product-thumnail" height="270"
-                                                 src="assets/images/products/p-18.jpg" width="270">
-                                        </a>
-                                        <a class="lookup btn_call_quickview" href="#"><i
-                                                class="biolife-icon icon-search"></i></a>
-                                    </div>
-                                    <div class="info">
-                                        <b class="categories">Other Home Appliance</b>
-                                        <h4 class="product-title"><a class="pr-name" href="#">Dry Iron</a></h4>
-                                        <div class="price ">
-                                            <ins><span class="price-amount"><span
-                                                    class="currencySymbol">£</span>85.00</span>
-                                            </ins>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="product-item">
-                                <div class="contain-product layout-default">
-                                    <div class="product-thumb">
-                                        <a class="link-to-product" href="#">
-                                            <img alt="Vegetables" class="product-thumnail" height="270"
-                                                 src="assets/images/products/p-23.jpg" width="270">
-                                        </a>
-                                        <a class="lookup btn_call_quickview" href="#"><i
-                                                class="biolife-icon icon-search"></i></a>
-                                    </div>
-                                    <div class="info">
-                                        <b class="categories">Rechargeable Emergency Fluorescent Lamp</b>
-                                        <h4 class="product-title"><a class="pr-name" href="#">NRechargeable Emergency
-                                            Fluorescent Lamp</a></h4>
-                                        <div class="price ">
-                                            <ins><span class="price-amount"><span
-                                                    class="currencySymbol">£</span>85.00</span>
-                                            </ins>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="product-item">
-                                <div class="contain-product layout-default">
-                                    <div class="product-thumb">
-                                        <a class="link-to-product" href="#">
-                                            <img alt="Vegetables" class="product-thumnail" height="270"
-                                                 src="assets/images/products/p-01.jpg" width="270">
-                                        </a>
-                                        <a class="lookup btn_call_quickview" href="#"><i
-                                                class="biolife-icon icon-search"></i></a>
-                                    </div>
-                                    <div class="info">
-                                        <b class="categories">Rechargeable Emergency Lantern (Plastic)</b>
-                                        <h4 class="product-title"><a class="pr-name" href="#">Hanging Lantern</a>
-                                        </h4>
-                                        <div class="price ">
-                                            <ins><span class="price-amount"><span
-                                                    class="currencySymbol">£</span>85.00</span>
-                                            </ins>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="product-item">
-                                <div class="contain-product layout-default">
-                                    <div class="product-thumb">
-                                        <a class="link-to-product" href="#">
-                                            <img alt="Vegetables" class="product-thumnail" height="270"
-                                                 src="assets/images/products/p-06.jpg" width="270">
-                                        </a>
-                                        <a class="lookup btn_call_quickview" href="#"><i
-                                                class="biolife-icon icon-search"></i></a>
-                                    </div>
-                                    <div class="info">
-                                        <b class="categories">Rechargeable Machined Aircraft Aluminium Torch</b>
-                                        <h4 class="product-title"><a class="pr-name" href="#">Metal Rechargeable
-                                            Torch</a></h4>
-                                        <div class="price ">
-                                            <ins><span class="price-amount"><span
-                                                    class="currencySymbol">£</span>85.00</span>
-                                            </ins>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
+                                </li>
+                                <?php
+                            }
+                            ?>
                         </ul>
                     </div>
                 </div>
@@ -1087,7 +619,7 @@
                 </div>
                 <div class="col-lg-12 col-xs-12 xs-padding-bottom-30px">
                     <div class="copy-right-text text-center"><p>Copyright © 2023 <b>PO SHUN Corporation Ltd.</b> All
-                        rights reserved.</p></div>
+                            rights reserved.</p></div>
                 </div>
             </div>
         </div>

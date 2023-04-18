@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
-
-<!-- Mirrored from html.kutethemes.com/biolife/product.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 13 Apr 2023 04:41:10 GMT -->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -1558,6 +1556,4 @@
     <script src="assets/js/biolife.framework.js"></script>
     <script src="assets/js/functions.js"></script>
 </body>
-
-<!-- Mirrored from html.kutethemes.com/biolife/product.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 13 Apr 2023 04:41:10 GMT -->
 </html>

@@ -184,8 +184,9 @@ if (!isset($_SESSION['userid'])) {
                                         </thead>
                                         <tbody>
                                         <?php
-                                        $product = $db_handle->runQuery("SELECT * FROM category,product where product.category_id = category.id order by product.id desc");
-                                        $row_count = $db_handle->numRows("SELECT * FROM category,product where product.category_id = category.id order by product.id desc");
+                                        $query="SELECT * FROM category,product where product.category_id = category.id order by product.id desc";
+                                        $product = $db_handle->runQuery($query);
+                                        $row_count = $db_handle->numRows($query);
 
                                         for ($i = 0; $i < $row_count; $i++) {
                                             ?>
@@ -195,13 +196,10 @@ if (!isset($_SESSION['userid'])) {
                                                 <td><?php echo $product[$i]["p_name"]; ?></td>
                                                 <td><?php echo $product[$i]["product_code"]; ?></td>
                                                 <td><?php echo $product[$i]["description"]; ?></td>
+                                                <td><a href="../<?php echo $product[$i]["p_image"]; ?>"
+                                                       target="_blank">Image</a></td>
                                                 <?php
                                                 $date = date_create($product[$i]["inserted_at"]);
-                                                $date_formatted = date_format($date, "d F y, g:i A");
-                                                ?>
-                                                <td><?php echo $date_formatted; ?></td>
-                                                <?php
-                                                $date = date_create($product[$i]["updated_at"]);
                                                 $date_formatted = date_format($date, "d F y, g:i A");
                                                 ?>
                                                 <td><?php echo $date_formatted; ?></td>

@@ -14205,6 +14205,7 @@ body.open-quickview-block .biolife-quickview-block{
     }
     .contain-product.layout-default .info{
         position: relative;
+        height: 140px;
     }
     .contain-product.layout-default .slide-down-box{
         -webkit-transition: all 500ms ease;

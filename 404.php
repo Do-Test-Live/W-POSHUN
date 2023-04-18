@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
-
-<!-- Mirrored from html.kutethemes.com/biolife/404.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 13 Apr 2023 04:41:05 GMT -->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
