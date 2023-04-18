@@ -1,10 +1,14 @@
+<?php
+require_once("admin/include/dbController.php");
+$db_handle = new DBController();
+?>
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 <head>
     <meta charset="utf-8">
     <meta content="IE=edge" http-equiv="X-UA-Compatible">
     <meta content="width=device-width, initial-scale=1" name="viewport">
-    <title>Biolife - Organic Food</title>
+    <title>Shop - PO SHUN Corporation Ltd.</title>
     <link href="https://fonts.googleapis.com/css?family=Cairo:400,600,700&amp;display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Poppins:600&amp;display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400i,700i" rel="stylesheet">
@@ -62,17 +66,17 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 col-md-2 col-md-6 col-xs-6">
-                    <a class="biolife-logo" href="index.html"><img alt="biolife logo" height="36"
-                                                                   src="assets/images/organic-4.png" width="135"></a>
+                    <a class="biolife-logo" href="Home"><img alt="biolife logo" height="36"
+                                                             src="assets/images/organic-4.png" width="135"></a>
                 </div>
                 <div class="col-lg-6 col-md-7 hidden-sm hidden-xs">
                     <div class="primary-menu">
                         <ul class="menu biolife-menu clone-main-menu clone-primary-menu" data-menuname="main menu"
                             id="primary-menu">
-                            <li class="menu-item"><a href="index.html">Home</a></li>
-                            <li class="menu-item"><a href="shop.html">Products</a></li>
-                            <li class="menu-item"><a href="about-us.html">About us</a></li>
-                            <li class="menu-item"><a href="contact.html">Contact</a></li>
+                            <li class="menu-item"><a href="Home">Home</a></li>
+                            <li class="menu-item"><a href="Shop">Products</a></li>
+                            <li class="menu-item"><a href="About">About us</a></li>
+                            <li class="menu-item"><a href="Contact">Contact</a></li>
                         </ul>
                     </div>
                 </div>
@@ -94,90 +98,58 @@
 
 <!--Hero Section-->
 <div class="hero-section hero-background mb-54px">
-    <h1 class="page-title">Organic Fruits</h1>
+    <h1 class="page-title">PO SHUN SHOP</h1>
 </div>
 
 <div class="page-contain category-page left-sidebar">
     <div class="container">
         <div class="row">
             <!-- Main content -->
-            <div class="main-content col-lg-8 col-sm-12 col-xs-12" id="main-content">
+            <div class="main-content col-lg-8 col-sm-12 col-xs-12" id="main-content" style="padding-bottom: 5em">
                 <div class="product-category list-style">
 
                     <div class="row">
                         <ul class="products-list">
+                            <?php
+                            $extend='';
+                            if(isset($_GET['category_id'])){
+                                $extend=' and product.category_id='.$_GET['category_id'];
+                            }
+
+                            $query = "SELECT * FROM category,product where product.category_id = category.id".$extend." ORDER BY RAND() limit 7";
+                            $product = $db_handle->runQuery($query);
+                            $row_count = $db_handle->numRows($query);
+
+                            for ($i = 0; $i < $row_count; $i++) {
+                            ?>
                             <li class="product-item col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="contain-product pr-detail-layout">
                                     <div class="product-thumb">
                                         <a class="link-to-product" href="#">
-                                            <img alt="dd" class="product-thumnail" height="270" src="assets/images/products/p-11.jpg"
+                                            <img alt="dd" class="product-thumnail" height="270" src="<?php echo $product[$i]["p_image"]; ?>"
                                                  width="270">
                                         </a>
                                     </div>
                                     <div class="info">
-                                        <b class="categories">Fresh Fruit</b>
-                                        <h4 class="product-title"><a class="pr-name" href="#">Organic 10 Assorted
-                                            Flavors Jelly Beans, 5.5 Oz</a></h4>
-                                        <p class="excerpt">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                            Mauris vel maximus lacus. Duis ut mauris eget justo dictum tempus sed vel
-                                            tellus.</p>
-                                        <div class="price">
-                                            <ins><span class="price-amount"><span
-                                                    class="currencySymbol">£</span>85.00</span></ins>
+                                        <b class="categories"><?php echo $product[$i]["c_name"]; ?></b>
+                                        <h4 class="product-title">
+                                            <a class="pr-name" href="Product?product_id=<?php echo $product[$i]["id"]; ?>">
+                                                Product Name: <?php echo $product[$i]["p_name"]; ?>
+                                            </a>
+                                        </h4>
+                                        <h6>Product Code: <?php echo $product[$i]["product_code"]; ?></h6>
+                                        <div class="excerpt">
+                                            <?php echo $product[$i]["description"]; ?>
                                         </div>
                                         <div class="buttons">
-                                            <a class="btn add-to-cart-btn" href="#">view Details</a>
-                                        </div>
-                                    </div>
-                                    <div class="advance-info">
-                                        <ul class="list">
-                                            <li>100% real fruit ingredients</li>
-                                            <li>All Sugar comes naturally</li>
-                                            <li>Non-GMO Project Verified</li>
-                                        </ul>
-                                        <div class="shipping-info">
-                                            <p class="shipping-day">3-Day Shipping</p>
-                                            <p class="for-today">Pree Pickup Today</p>
+                                            <a class="btn add-to-cart-btn" href="Product?product_id=<?php echo $product[$i]["id"]; ?>">view Details</a>
                                         </div>
                                     </div>
                                 </div>
                             </li>
-                            <li class="product-item col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <div class="contain-product pr-detail-layout">
-                                    <div class="product-thumb">
-                                        <a class="link-to-product" href="#">
-                                            <img alt="dd" class="product-thumnail" height="270" src="assets/images/products/p-11.jpg"
-                                                 width="270">
-                                        </a>
-                                    </div>
-                                    <div class="info">
-                                        <b class="categories">Fresh Fruit</b>
-                                        <h4 class="product-title"><a class="pr-name" href="#">Organic 10 Assorted
-                                            Flavors Jelly Beans, 5.5 Oz</a></h4>
-                                        <p class="excerpt">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                            Mauris vel maximus lacus. Duis ut mauris eget justo dictum tempus sed vel
-                                            tellus.</p>
-                                        <div class="price">
-                                            <ins><span class="price-amount"><span
-                                                    class="currencySymbol">£</span>85.00</span></ins>
-                                        </div>
-                                        <div class="buttons">
-                                            <a class="btn add-to-cart-btn" href="#">view Details</a>
-                                        </div>
-                                    </div>
-                                    <div class="advance-info">
-                                        <ul class="list">
-                                            <li>100% real fruit ingredients</li>
-                                            <li>All Sugar comes naturally</li>
-                                            <li>Non-GMO Project Verified</li>
-                                        </ul>
-                                        <div class="shipping-info">
-                                            <p class="shipping-day">3-Day Shipping</p>
-                                            <p class="for-today">Pree Pickup Today</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
+                                <?php
+                            }
+                            ?>
                         </ul>
                     </div>
 
@@ -210,37 +182,26 @@
                         </div>
                         <div class="wrap-menu">
                             <ul class="menu clone-main-menu">
-                                <li class="menu-item">
-                                    <a class="menu-name" data-title="Fruit & Nut Gifts" href="#"><i
-                                            class="biolife-icon icon-fruits"></i>Rechargeable Mini Metal Torch</a>
-                                </li>
-                                <li class="menu-item">
-                                    <a class="menu-name" data-title="Vegetables" href="#"><i
-                                            class="biolife-icon icon-broccoli-1"></i>Rechargeable Spotlight</a>
-                                </li>
-                                <li class="menu-item">
-                                    <a class="menu-name" data-title="Fresh Berries" href="#"><i
-                                            class="biolife-icon icon-grape"></i>Rechargeable Search Light (Plastic)</a>
-                                </li>
-                                <li class="menu-item"><a class="menu-name" data-title="Ocean Foods" href="#"><i
-                                        class="biolife-icon icon-fish"></i>Rechargeable Machined Aircraft Aluminium
-                                    Torch</a></li>
-                                <li class="menu-item">
-                                    <a class="menu-name" data-title="Butter & Eggs" href="#"><i
-                                            class="biolife-icon icon-honey"></i>Rechargeable Emergency Lantern
-                                        (Plastic)</a>
-                                </li>
-                                <li class="menu-item"><a class="menu-title" href="#"><i
-                                        class="biolife-icon icon-fast-food"></i>Rechargeable Emergency Fluorescent
-                                    Lamp</a></li>
-                                <li class="menu-item"><a class="menu-title" href="#"><i
-                                        class="biolife-icon icon-beef"></i>Rechargeable Headlight (Plastic)</a></li>
-                                <li class="menu-item"><a class="menu-title" href="#"><i
-                                        class="biolife-icon icon-onions"></i>LED Bulb</a></li>
-                                <li class="menu-item"><a class="menu-title" href="#"><i
-                                        class="biolife-icon icon-avocado"></i>Radio</a></li>
-                                <li class="menu-item"><a class="menu-title" href="#"><i
-                                        class="biolife-icon icon-contain"></i>Other Home Appliance</a></li>
+                                <?php
+                                $query = "SELECT * FROM category order by id asc";
+
+                                $category_data = $db_handle->runQuery($query);
+                                $row_count = $db_handle->numRows($query);
+
+                                for ($i = 0; $i < $row_count; $i++) {
+                                    ?>
+                                    <li class="menu-item">
+                                        <a class="menu-name" data-title="Fruit & Nut Gifts"
+                                           href="Shop?category_id=<?php echo $category_data[$i]["id"]; ?>">
+                                            <img src="<?php echo $category_data[$i]["icon"]; ?>" class="img-fluid"
+                                                 style="width: 30px;margin-right: 0.25em;border: 1px solid black;padding: 3px"
+                                                 alt=""/>
+                                            <?php echo $category_data[$i]["c_name"]; ?>
+                                        </a>
+                                    </li>
+                                    <?php
+                                }
+                                ?>
                             </ul>
                         </div>
                     </div>
@@ -365,6 +326,4 @@
 <script src="assets/js/biolife.framework.js"></script>
 <script src="assets/js/functions.js"></script>
 </body>
-
-<!-- Mirrored from html.kutethemes.com/biolife/category-list-left-sidebar.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 13 Apr 2023 04:41:05 GMT -->
 </html>

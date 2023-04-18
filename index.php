@@ -306,7 +306,7 @@ $db_handle = new DBController();
                     data-slick='{"arrows":true,"dots":false,"infinite":true,"autoplay":true,"speed":400,"slidesMargin":30,"slidesToShow":4, "responsive":[{"breakpoint":1200, "settings":{ "slidesToShow": 3}},{"breakpoint":992, "settings":{ "slidesToShow": 3}},{"breakpoint":768, "settings":{ "slidesToShow": 2}}, {"breakpoint":500, "settings":{ "slidesToShow": 1}}]}'>
 
                     <?php
-                    $query = "SELECT * FROM category order by id desc";
+                    $query = "SELECT * FROM category order by id asc";
 
                     $category_data = $db_handle->runQuery($query);
                     $row_count = $db_handle->numRows($query);
