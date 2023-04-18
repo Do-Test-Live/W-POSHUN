@@ -66,7 +66,7 @@ $db_handle = new DBController();
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 col-md-2 col-md-6 col-xs-6">
-                    <a class="biolife-logo" href="Home"><img alt="biolife logo" height="36"
+                    <a class="biolife-logo" href="Home"><img alt="PO SHUN logo" height="36"
                                                              src="assets/images/organic-4.png" width="135"></a>
                 </div>
                 <div class="col-lg-6 col-md-7 hidden-sm hidden-xs">
@@ -137,7 +137,7 @@ $db_handle = new DBController();
                                         <div class="product-thumb">
                                             <a class="link-to-product" href="#">
                                                 <img alt="dd" class="product-thumnail" height="270"
-                                                     src="<?php echo $product[$i]["p_image"]; ?>"
+                                                     src="<?php echo str_replace("650", "250", strtok($product [$i]['p_image'],',')); ?>"
                                                      width="270">
                                             </a>
                                         </div>
@@ -302,7 +302,7 @@ $db_handle = new DBController();
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-9">
                     <section class="footer-item">
-                        <a class="logo footer-logo" href="index.html"><img alt="biolife logo"
+                        <a class="logo footer-logo" href="Home"><img alt="PO SHUN logo"
                                                                            height="36"
                                                                            src="assets/images/organic-4.png"
                                                                            width="135"></a>
@@ -322,10 +322,10 @@ $db_handle = new DBController();
                             <div class="col-lg-6 col-sm-6 col-xs-6">
                                 <div class="wrap-custom-menu vertical-menu-2">
                                     <ul class="menu">
-                                        <li><a href="#">Home</a></li>
-                                        <li><a href="#">Products</a></li>
-                                        <li><a href="#">About US</a></li>
-                                        <li><a href="#">Contact US</a></li>
+                                        <li><a href="Home">Home</a></li>
+                                        <li><a href="Shop">Products</a></li>
+                                        <li><a href="About">About US</a></li>
+                                        <li><a href="Contact">Contact US</a></li>
                                     </ul>
                                 </div>
                             </div>

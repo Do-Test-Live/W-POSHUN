@@ -66,7 +66,7 @@ $db_handle = new DBController();
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 col-md-2 col-md-6 col-xs-6">
-                    <a class="biolife-logo" href="Home"><img alt="biolife logo" height="36"
+                    <a class="biolife-logo" href="Home"><img alt="PO SHUN logo" height="36"
                                                              src="assets/images/organic-4.png" width="135"></a>
                 </div>
                 <div class="col-lg-6 col-md-7 hidden-sm hidden-xs">
@@ -371,7 +371,7 @@ $db_handle = new DBController();
                                                 <a class="link-to-product"
                                                    href="Product?product_id=<?php echo $product[$i]["id"]; ?>">
                                                     <img alt="Vegetables" class="product-thumnail" height="270"
-                                                         src="<?php echo $product[$i]["p_image"]; ?>" width="270">
+                                                         src="<?php echo str_replace("650", "250", strtok($product [$i]['p_image'],',')); ?>" width="270">
                                                 </a>
                                             </div>
                                             <div class="info">
@@ -405,20 +405,16 @@ $db_handle = new DBController();
                     <div class="banner-contain">
                         <div class="media">
                             <div class="img-moving position-1">
-                                <a class="banner-link" href="#"><img
+                                <a class="banner-link" href="Shop"><img
                                             alt="img msv" height="507"
                                             src="assets/images/home-04/bn_promotion-child01.png"
                                             width="711"></a>
                             </div>
-                            <div class="img-moving position-2">
-                                <img alt="img msv" height="145" src="assets/images/home-04/bn_promotion-child02.png"
-                                     width="155">
-                            </div>
                         </div>
                         <div class="text-content">
-                            <b class="first-line">Special discount<br>for all lights items</b>
+                            <b class="first-line">Collect best lights<br>items in our shop</b>
                             <p class="buttons">
-                                <a class="btn btn-bold green-btn" href="#">See Offer Now!</a>
+                                <a class="btn btn-bold green-btn" href="Shop">View Products</a>
                             </p>
                         </div>
                     </div>
@@ -491,7 +487,7 @@ $db_handle = new DBController();
                                             <a class="link-to-product"
                                                href="Product?product_id=<?php echo $product[$i]["id"]; ?>">
                                                 <img alt="Vegetables" class="product-thumnail" height="270"
-                                                     src="<?php echo $product[$i]["p_image"]; ?>" width="270">
+                                                     src="<?php echo str_replace("650", "250", strtok($product [$i]['p_image'],',')); ?>" width="270">
                                             </a>
                                         </div>
                                         <div class="info">
@@ -530,7 +526,7 @@ $db_handle = new DBController();
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-9">
                     <section class="footer-item">
-                        <a class="logo footer-logo" href="index.html"><img alt="biolife logo"
+                        <a class="logo footer-logo" href="Home"><img alt="PO SHUN logo"
                                                                            height="36"
                                                                            src="assets/images/organic-4.png"
                                                                            width="135"></a>
@@ -550,10 +546,10 @@ $db_handle = new DBController();
                             <div class="col-lg-6 col-sm-6 col-xs-6">
                                 <div class="wrap-custom-menu vertical-menu-2">
                                     <ul class="menu">
-                                        <li><a href="#">Home</a></li>
-                                        <li><a href="#">Products</a></li>
-                                        <li><a href="#">About US</a></li>
-                                        <li><a href="#">Contact US</a></li>
+                                        <li><a href="Home">Home</a></li>
+                                        <li><a href="Shop">Products</a></li>
+                                        <li><a href="About">About US</a></li>
+                                        <li><a href="Contact">Contact US</a></li>
                                     </ul>
                                 </div>
                             </div>
