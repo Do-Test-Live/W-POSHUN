@@ -111,42 +111,56 @@ $db_handle = new DBController();
                     <div class="row">
                         <ul class="products-list">
                             <?php
-                            $extend='';
-                            if(isset($_GET['category_id'])){
-                                $extend=' and product.category_id='.$_GET['category_id'];
+
+                            if (isset($_GET["page"]))
+                                $page = (int)$_GET["page"];
+                            else
+                                $page = 1;
+
+                            $setLimit = 7;
+                            $pageLimit = ($page * $setLimit) - $setLimit;
+
+
+                            $extend = '';
+                            if (isset($_GET['category_id'])) {
+                                $extend = ' and product.category_id=' . $_GET['category_id'];
                             }
 
-                            $query = "SELECT * FROM category,product where product.category_id = category.id".$extend." ORDER BY RAND() limit 7";
+                            $query = "SELECT * FROM category,product where product.category_id = category.id" . $extend . " ORDER BY RAND() limit " . $pageLimit . "," . $setLimit;
                             $product = $db_handle->runQuery($query);
                             $row_count = $db_handle->numRows($query);
 
                             for ($i = 0; $i < $row_count; $i++) {
-                            ?>
-                            <li class="product-item col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <div class="contain-product pr-detail-layout">
-                                    <div class="product-thumb">
-                                        <a class="link-to-product" href="#">
-                                            <img alt="dd" class="product-thumnail" height="270" src="<?php echo $product[$i]["p_image"]; ?>"
-                                                 width="270">
-                                        </a>
-                                    </div>
-                                    <div class="info">
-                                        <b class="categories"><?php echo $product[$i]["c_name"]; ?></b>
-                                        <h4 class="product-title">
-                                            <a class="pr-name" href="Product?product_id=<?php echo $product[$i]["id"]; ?>">
-                                                Product Name: <?php echo $product[$i]["p_name"]; ?>
+                                ?>
+                                <li class="product-item col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="contain-product pr-detail-layout">
+                                        <div class="product-thumb">
+                                            <a class="link-to-product" href="#">
+                                                <img alt="dd" class="product-thumnail" height="270"
+                                                     src="<?php echo $product[$i]["p_image"]; ?>"
+                                                     width="270">
                                             </a>
-                                        </h4>
-                                        <h6>Product Code: <?php echo $product[$i]["product_code"]; ?></h6>
-                                        <div class="excerpt">
-                                            <?php echo $product[$i]["description"]; ?>
                                         </div>
-                                        <div class="buttons">
-                                            <a class="btn add-to-cart-btn" href="Product?product_id=<?php echo $product[$i]["id"]; ?>">view Details</a>
+                                        <div class="info">
+                                            <b class="categories"><?php echo $product[$i]["c_name"]; ?></b>
+                                            <h4 class="product-title">
+                                                <a class="pr-name"
+                                                   href="Product?product_id=<?php echo $product[$i]["id"]; ?>">
+                                                    Product Name: <?php echo $product[$i]["p_name"]; ?>
+                                                </a>
+                                            </h4>
+                                            <h6>Product Code: <?php echo $product[$i]["product_code"]; ?></h6>
+                                            <div class="excerpt">
+                                                <?php echo $product[$i]["description"]; ?>
+                                            </div>
+                                            <div class="buttons">
+                                                <a class="btn add-to-cart-btn"
+                                                   href="Product?product_id=<?php echo $product[$i]["id"]; ?>">view
+                                                    Details</a>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </li>
+                                </li>
                                 <?php
                             }
                             ?>
@@ -154,15 +168,85 @@ $db_handle = new DBController();
                     </div>
 
                     <div class="biolife-panigations-block">
-                        <ul class="panigation-contain">
-                            <li><span class="current-page">1</span></li>
-                            <li><a class="link-page" href="#">2</a></li>
-                            <li><a class="link-page" href="#">3</a></li>
-                            <li><span class="sep">....</span></li>
-                            <li><a class="link-page" href="#">20</a></li>
-                            <li><a class="link-page next" href="#"><i aria-hidden="true" class="fa fa-angle-right"></i></a>
-                            </li>
-                        </ul>
+                        <?php
+                        $per_page = 7;
+                        $page_url = "?";
+
+                        $query = "SELECT * FROM product where status = 1";
+                        $total = $db_handle->numRows($query);
+                        $adjacents = "2";
+
+                        $page = ($page == 0 ? 1 : $page);
+                        $start = ($page - 1) * $per_page;
+
+                        $prev = $page - 1;
+                        $next = $page + 1;
+                        $setLastpage = ceil($total / $per_page);
+                        $lpm1 = $setLastpage - 1;
+
+                        $setPaginate = "";
+                        if ($setLastpage > 1) {
+                            $setPaginate .= "<ul class='panigation-contain'>";
+                            $setPaginate .= "<li>Page $page of $setLastpage</li>";
+                            if ($setLastpage < 7 + ($adjacents * 2)) {
+                                for ($counter = 1; $counter <= $setLastpage; $counter++) {
+                                    if ($counter == $page)
+                                        $setPaginate .= "<li><span class='current-page'>$counter</span></li>";
+                                    else
+                                        $setPaginate .= "<li><a class='link-page' href='{$page_url}page=$counter'>$counter</a></li>";
+                                }
+                            } elseif ($setLastpage > 5 + ($adjacents * 2)) {
+                                if ($page < 1 + ($adjacents * 2)) {
+                                    for ($counter = 1; $counter < 4 + ($adjacents * 2); $counter++) {
+                                        if ($counter == $page)
+                                            $setPaginate .= "<li><span class='current-page'>$counter</span></li>";
+                                        else
+                                            $setPaginate .= "<li><a class='link-page' href='{$page_url}page=$counter'>$counter</a></li>";
+                                    }
+                                    $setPaginate .= "<li><span class='sep'>...</span></li>";
+                                    $setPaginate .= "<li><a href='{$page_url}page=$lpm1'>$lpm1</a></li>";
+                                    $setPaginate .= "<li><a href='{$page_url}page=$setLastpage'>$setLastpage</a></li>";
+                                } elseif ($setLastpage - ($adjacents * 2) > $page && $page > ($adjacents * 2)) {
+                                    $setPaginate .= "<li><a class='link-page' href='{$page_url}page=1'>1</a></li>";
+                                    $setPaginate .= "<li><a class='link-page' href='{$page_url}page=2'>2</a></li>";
+                                    $setPaginate .= "<li><span class='sep'>...</span></li>";
+                                    for ($counter = $page - $adjacents; $counter <= $page + $adjacents; $counter++) {
+                                        if ($counter == $page)
+                                            $setPaginate .= "<li><span class='current-page'>$counter</span></li>";
+                                        else
+                                            $setPaginate .= "<li><a class='link-page' href='{$page_url}page=$counter'>$counter</a></li>";
+                                    }
+                                    $setPaginate .= "<li><span class='sep'>...</span></li>";
+                                    $setPaginate .= "<li><a class='link-page' href='{$page_url}page=$lpm1'>$lpm1</a></li>";
+                                    $setPaginate .= "<li><a class='link-page' href='{$page_url}page=$setLastpage'>$setLastpage</a></li>";
+                                } else {
+                                    $setPaginate .= "<li><a class='link-page' href='{$page_url}page=1'>1</a></li>";
+                                    $setPaginate .= "<li><a class='link-page' href='{$page_url}page=2'>2</a></li>";
+                                    $setPaginate .= "<li><span class='sep'>...</span></li>";
+                                    for ($counter = $setLastpage - (2 + ($adjacents * 2)); $counter <= $setLastpage; $counter++) {
+                                        if ($counter == $page)
+                                            $setPaginate .= "<li><span class='current-page'>$counter</span></li>";
+                                        else
+                                            $setPaginate .= "<li><a class='link-page' href='{$page_url}page=$counter'>$counter</a></li>";
+                                    }
+                                }
+                            }
+
+/*                            if ($page < $counter - 1) {
+                                $setPaginate .= "<li><a class='link-page' href='{$page_url}page=$next'>Next</a></li>";
+                                $setPaginate .= "<li><a class='link-page' href='{$page_url}page=$setLastpage'>Last</a></li>";
+                            } else {
+                                $setPaginate .= "<li><span class='current-page'>Next</span></li>";
+                                $setPaginate .= "<li><span class='current-page'>Last</span></li>";
+                            }*/
+
+                            $setPaginate .= "</ul>\n";
+                        }
+
+
+                        echo $setPaginate;
+
+                        ?>
                     </div>
 
                 </div>
@@ -307,7 +391,7 @@ $db_handle = new DBController();
                 </div>
                 <div class="col-lg-12 col-xs-12 xs-padding-bottom-30px">
                     <div class="copy-right-text text-center"><p>Copyright © 2023 <b>PO SHUN Corporation Ltd.</b> All
-                        rights reserved.</p></div>
+                            rights reserved.</p></div>
                 </div>
             </div>
         </div>
