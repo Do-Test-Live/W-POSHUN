@@ -21,6 +21,22 @@ $db_handle = new DBController();
     <link href="assets/css/slick.min.css" rel="stylesheet">
     <link href="assets/css/style.css" rel="stylesheet">
     <link href="assets/css/main-color04.css" rel="stylesheet">
+    <style>
+        .d-lg-block{
+            display: block;
+        }
+
+        @media only screen and (max-width: 550px) {
+            .d-none{
+                display: none;
+            }
+        }
+    </style>
+    <script>
+        if (location.protocol !== 'https:') {
+            location.replace(`https:${location.href.substring(location.protocol.length)}`);
+        }
+    </script>
 </head>
 <body class="biolife-body">
 
@@ -41,21 +57,18 @@ $db_handle = new DBController();
         <div class="container">
             <div class="top-bar left">
                 <ul class="horizontal-menu">
-                    <li><a href="#"><i aria-hidden="true" class="fa fa-envelope"></i>Organic@company.com</a></li>
+                    <li><a href="#"><i aria-hidden="true" class="fa fa-envelope"></i>poshun@netvigator.com</a></li>
                     <li><a href="#">Since 1983</a></li>
                 </ul>
             </div>
             <div class="top-bar right">
                 <ul class="social-list">
-                    <li><a href="#"><i aria-hidden="true" class="fa fa-twitter"></i></a></li>
-                    <li><a href="#"><i aria-hidden="true" class="fa fa-facebook"></i></a></li>
-                    <li><a href="#"><i aria-hidden="true" class="fa fa-pinterest"></i></a></li>
+                    <li><a href="#">Whatsapp: 852-67696741</a></li>
                 </ul>
                 <ul class="horizontal-menu">
                     <li class="horz-menu-item lang">
                         <select name="language">
-                            <option value="hk">Hong Kong (HKD)</option>
-                            <option selected value="en">English (USD)</option>
+                            <option selected value="en">Address: 名片上英文地址</option>
                         </select>
                     </li>
                 </ul>
@@ -193,7 +206,7 @@ $db_handle = new DBController();
         </div>
 
         <!--Block 02: Banners-->
-        <div class="banner-block sm-margin-bottom-76px xs-margin-top-80px sm-margin-top-60px">
+        <div class="banner-block sm-margin-bottom-76px xs-margin-top-20px sm-margin-top-60px d-lg-block d-none">
             <div class="container">
                 <ul class="biolife-carousel nav-center-bold nav-none-on-mobile"
                     data-slick='{"rows":1,"arrows":true,"dots":false,"infinite":false,"speed":400,"slidesMargin":30,"slidesToShow":3, "responsive":[{"breakpoint":1200, "settings":{ "slidesToShow": 3}},{"breakpoint":992, "settings":{ "slidesToShow": 2}},{"breakpoint":768, "settings":{ "slidesToShow": 2}}, {"breakpoint":500, "settings":{ "slidesToShow": 1}}]}'>
@@ -275,7 +288,7 @@ $db_handle = new DBController();
 
         <div class="welcome-us-block">
             <div class="container">
-                <h4 class="title">About Us</h4>
+                <h4 class="title xs-padding-top-30px">About Us</h4>
                 <div class="text-wraper">
                     <p class="text-info">Po Shun Corporation has been established in Hong Kong since 1980, with 30
                         years'
@@ -294,7 +307,7 @@ $db_handle = new DBController();
         </div>
 
         <!--Block 03: Categories-->
-        <div class="background-fafafa wrap-category xs-margin-top-80px sm-margin-top-50px">
+        <div class="background-fafafa wrap-category xs-margin-top-0px sm-margin-top-50px">
             <div class="container xs-padding-top-50px xs-padding-bottom-50px">
                 <div class="biolife-title-box style-02 xs-margin-bottom-33px">
                     <span class="subtitle">Best Categories 2023</span>
@@ -423,7 +436,7 @@ $db_handle = new DBController();
         </div>
 
         <!--Block 06: Advance-Box-->
-        <div class="container z-index-20 xs-margin-top-80px sm-margin-top-0">
+        <div class="container z-index-20 xs-margin-top-0 sm-margin-top-0">
             <div class="row">
 
                 <!--<div class="col-lg-4 sm-margin-top-80px ">
@@ -534,7 +547,7 @@ $db_handle = new DBController();
                             <i class="biolife-icon icon-head-phone"></i>
                             <p class="r-info">
                                 <span>Got Questions ?</span>
-                                <span>(000)  0000-0000  (000) 000 -00</span>
+                                <span>852-23081162</span>
                             </p>
                         </div>
                     </section>
@@ -564,19 +577,25 @@ $db_handle = new DBController();
                                 <li>
                                     <p class="info-item">
                                         <i class="biolife-icon icon-location"></i>
-                                        <b class="desc">address, address, address </b>
+                                        <b class="desc">Address: 名片上英文地址</b>
                                     </p>
                                 </li>
                                 <li>
                                     <p class="info-item">
                                         <i class="biolife-icon icon-phone"></i>
-                                        <b class="desc">Phone: (+000) 000 000 (+000) 000 000</b>
+                                        <b class="desc">Phone: 852-23081162</b>
+                                    </p>
+                                </li>
+                                <li>
+                                    <p class="info-item">
+                                        <i class="fa fa-whatsapp" style="font-size: 22px;padding-right: 13px;"></i>
+                                        <b class="desc">Whatsapp: 852-6769674</b>
                                     </p>
                                 </li>
                                 <li>
                                     <p class="info-item">
                                         <i class="biolife-icon icon-letter"></i>
-                                        <b class="desc">Email: contact@company.com</b>
+                                        <b class="desc">E-mail: poshun@netvigator.com</b>
                                     </p>
                                 </li>
                                 <li>
@@ -584,25 +603,6 @@ $db_handle = new DBController();
                                         <i class="biolife-icon icon-clock"></i>
                                         <b class="desc">Hours: 7 Days a week from 10:00 am</b>
                                     </p>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="biolife-social inline">
-                            <ul class="socials">
-                                <li><a class="socail-btn" href="#" title="twitter"><i aria-hidden="true"
-                                                                                      class="fa fa-twitter"></i></a>
-                                </li>
-                                <li><a class="socail-btn" href="#" title="facebook"><i aria-hidden="true"
-                                                                                       class="fa fa-facebook"></i></a>
-                                </li>
-                                <li><a class="socail-btn" href="#" title="pinterest"><i aria-hidden="true"
-                                                                                        class="fa fa-pinterest"></i></a>
-                                </li>
-                                <li><a class="socail-btn" href="#" title="youtube"><i aria-hidden="true"
-                                                                                      class="fa fa-youtube"></i></a>
-                                </li>
-                                <li><a class="socail-btn" href="#" title="instagram"><i aria-hidden="true"
-                                                                                        class="fa fa-instagram"></i></a>
                                 </li>
                             </ul>
                         </div>
