@@ -5914,7 +5914,6 @@ body.open-overlay #overlay{
     background: url("../images/about-us/bn01.jpg");
     background-position: center bottom;
     /*height: 499px;*/
-    height: 555px;
     background-size: cover;
 }
 .why-choose-us-block .box-title,
@@ -5937,7 +5936,7 @@ body.open-overlay #overlay{
     color: #555555;
     display: inline-block;
     max-width: 503px;
-    margin: 180px 0 0;
+    margin: 45px 0 0;
 }
 .welcome-us-block .qt-text{
     font-family: 'Ubuntu', sans-serif;

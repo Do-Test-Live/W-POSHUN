@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="assets/css/nice-select.css">
     <link rel="stylesheet" href="assets/css/slick.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/main-color.css">
+    <link rel="stylesheet" href="assets/css/main-color04.css">
 </head>
 <body class="biolife-body">
 
@@ -112,7 +112,7 @@
                 <iframe
                         width="1920"
                         height="591"
-                        src="https://maps.google.com/maps?width=100%&amp;height=263&amp;hl=en&amp;q=1%20Grafton%20Street%2C%20Dublin%2C%20Ireland+(My%20Business%20Name)&amp;ie=UTF8&amp;t=p&amp;z=15&amp;iwloc=B&amp;output=embed"
+                        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3690.750177797645!2d114.16243300000001!3d22.325286!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x340400b6d14fbee3%3A0x60b01a25cc040f1e!2sHang%20Cheong%20Centre%2C%20138%20Bedford%20Rd%2C%20Tai%20Kok%20Tsui%2C%20Hong%20Kong!5e0!3m2!1sen!2sbd!4v1681920142399!5m2!1sen!2sbd"
                         frameborder="0"
                         scrolling="no"
                         marginheight="0"
@@ -128,24 +128,29 @@
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <div class="contact-info-container sm-margin-top-27px xs-margin-bottom-60px xs-margin-top-60px">
                             <h4 class="box-title">Our Contact</h4>
-                            <p class="frst-desc">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</p>
+                            <p class="frst-desc">
+                                Po Shun Corporation has been established in Hong Kong since 1980, with 30 years' 
+                                experience and expertise in audio manufacturing, today our company not only 
+                                specialized in audio items, but is also eagerly developing ranges of high quality 
+                                and innovative consumer electronic products. 
+                            </p>
                             <ul class="addr-info">
                                 <li>
                                     <div class="if-item">
                                         <b class="tie">Addess:</b>
-                                        <p class="dsc">address, address, address</p>
+                                        <p class="dsc">Rm 1103, 11/F., Hang Cheong Centre,138 Bedford Rd., Tai Kok Tsui, Kln.</p>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="if-item">
                                         <b class="tie">Phone:</b>
-                                        <p class="dsc">(+000) 000 000 (+000) 000 000</p>
+                                        <p class="dsc">(852) 23081162</p>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="if-item">
                                         <b class="tie">Email:</b>
-                                        <p class="dsc">contact@company.com</p>
+                                        <p class="dsc">poshun@netvigator.com</p>
                                     </div>
                                 </li>
                                 <li>
@@ -155,15 +160,6 @@
                                     </div>
                                 </li>
                             </ul>
-                            <div class="biolife-social inline">
-                                <ul class="socials">
-                                    <li><a href="#" title="twitter" class="socail-btn"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                                    <li><a href="#" title="facebook" class="socail-btn"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                                    <li><a href="#" title="pinterest" class="socail-btn"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
-                                    <li><a href="#" title="youtube" class="socail-btn"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>
-                                    <li><a href="#" title="instagram" class="socail-btn"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-                                </ul>
-                            </div>
                         </div>
                     </div>
 

@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="assets/css/nice-select.css">
     <link rel="stylesheet" href="assets/css/slick.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/main-color.css">
+    <link rel="stylesheet" href="assets/css/main-color04.css">
 </head>
 <body class="biolife-body">
 
@@ -120,10 +120,22 @@
                             In audio manufacturing, today our company not only specialized in audio items, but is also
                             eagerly developing ranges of high quality and innovative consumer electronic products.
                         </p>
-                        <p class="qt-text">
-                            Our company designs and produces high quality consumer electronics items in competitive prices.
-                            Include audio products such as Radios, and Radio Cassette Recorders, CD Players, Watches &
-                            Clocks, Lighting Products such as Torches and Emergency Lanterns as well...More
+                        <p class="qt-text" style="margin-bottom:20px">
+                            Our company designs and produces high quality consumer electronics items 
+                            in competitive prices. Include audio products such as Radios, 
+                            and Radio Cassette Recorders, CD Players, Watches & Clocks, 
+                            Lighting Products such as Torches and Emergency Lanterns as well. 
+                            We emphasis on product quality and after-sale service brings us high 
+                            reputation in the consumer electronics industry. Apart from business 
+                            interests, we also pay attention in educating and nurturing talents in the industry. 
+                            Our company was once collaborated with Guangdong Ocean University 
+                            (formerly Zhanjiang Ocean University) in Mainland China to hold a mutual 
+                            beneficial exchange programme. The university provided research & development 
+                            supports to us, while we offered valuable on-site training opportunities to 
+                            160 graduates each year as a return. Our company have 3 factories located in 
+                            Zhongshan, China. Totally, we have 16 production lines, 30 experienced engineers 
+                            and about 300 trained workers. Our aims is to meet all the customers' 
+                            requirements and developing more unique high quality products for the future.
                         </p>
                     </div>
                 </div>
