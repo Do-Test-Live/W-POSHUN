@@ -1,3 +1,25 @@
+<?php
+require_once("admin/include/dbController.php");
+$db_handle = new DBController();
+date_default_timezone_set("Asia/Hong_Kong");
+if(isset($_POST['sendMessage'])){
+    $name = $db_handle->checkValue($_POST['name']);
+    $email = $db_handle->checkValue($_POST['email']);
+    $phone = $db_handle->checkValue($_POST['phone']);
+    $message = $db_handle->checkValue($_POST['message']);
+
+
+    $inserted_at = date("Y-m-d H:i:s");
+
+    $insert = $db_handle->insertQuery("INSERT INTO `contact`(`name`, `email`, `phone`, `message`, `inserted_at`) VALUES
+                                                                                 ('$name','$email','$phone','$message','$inserted_at')");
+
+    echo "<script>
+                document.cookie = 'alert = 3;';
+                window.location.href='Contact';
+                </script>";
+}
+?>
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 <head>
@@ -17,6 +39,16 @@
     <link rel="stylesheet" href="assets/css/slick.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/main-color04.css">
+    <link href="admin/vendor/toastr/css/toastr.min.css" rel="stylesheet" type="text/css"/>
+    <style>
+        .toast-success {
+            background-color: #5fb46e;
+        }
+
+        .toast-error {
+            background-color: #b50000;
+        }
+    </style>
 </head>
 <body class="biolife-body">
 
@@ -129,10 +161,10 @@
                         <div class="contact-info-container sm-margin-top-27px xs-margin-bottom-60px xs-margin-top-60px">
                             <h4 class="box-title">Our Contact</h4>
                             <p class="frst-desc">
-                                Po Shun Corporation has been established in Hong Kong since 1980, with 30 years' 
-                                experience and expertise in audio manufacturing, today our company not only 
-                                specialized in audio items, but is also eagerly developing ranges of high quality 
-                                and innovative consumer electronic products. 
+                                Po Shun Corporation has been established in Hong Kong since 1980, with 30 years'
+                                experience and expertise in audio manufacturing, today our company not only
+                                specialized in audio items, but is also eagerly developing ranges of high quality
+                                and innovative consumer electronic products.
                             </p>
                             <ul class="addr-info">
                                 <li>
@@ -166,21 +198,21 @@
                     <!--Contact form-->
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <div class="contact-form-container sm-margin-top-112px">
-                            <form action="#" name="frm-contact" >
+                            <form action="" method="post" name="frm-contact">
                                 <p class="form-row">
-                                    <input type="text" name="name" value="" placeholder="Your Name" class="txt-input">
+                                    <input type="text" name="name" value="" placeholder="Your Name" class="txt-input" required>
                                 </p>
                                 <p class="form-row">
-                                    <input type="email" name="email" value="" placeholder="Email Address" class="txt-input">
+                                    <input type="email" name="email" value="" placeholder="Email Address" class="txt-input" required>
                                 </p>
                                 <p class="form-row">
-                                    <input type="tel" name="phone" value="" placeholder="Phone Number" class="txt-input">
+                                    <input type="tel" name="phone" value="" placeholder="Phone Number" class="txt-input" required>
                                 </p>
                                 <p class="form-row">
-                                    <textarea name="mes" id="mes-1" cols="30" rows="9" placeholder="Leave Message"></textarea>
+                                    <textarea name="message" id="mes-1" cols="30" rows="9" placeholder="Leave Message" required></textarea>
                                 </p>
                                 <p class="form-row">
-                                    <button class="btn btn-submit" type="submit">send message</button>
+                                    <button class="btn btn-submit" name="sendMessage" type="submit">send message</button>
                                 </p>
                             </form>
                         </div>
@@ -292,5 +324,7 @@
     <script src="assets/js/slick.min.js"></script>
     <script src="assets/js/biolife.framework.js"></script>
     <script src="assets/js/functions.js"></script>
+    <script src="admin/vendor/toastr/js/toastr.min.js" type="text/javascript"></script>
+    <script src="admin/js/plugins-init/toastr-init.js" type="text/javascript"></script>
 </body>
 </html>

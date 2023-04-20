@@ -30,6 +30,12 @@
                     <li><a href="Product">Product List</a></li>
                 </ul>
             </li>
+            <li>
+                <a class="ai-icon" href="Contact">
+                    <i class="flaticon-381-note"></i>
+                    <span class="nav-text">Contact</span>
+                </a>
+            </li>
         </ul>
     </div>
 </div>
