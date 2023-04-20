@@ -119,8 +119,10 @@ $db_handle = new DBController();
 
 
                             $extend = '';
+                            $category='';
                             if (isset($_GET['category_id'])) {
                                 $extend = ' and product.category_id=' . $_GET['category_id'];
+                                $category='&category_id='.$_GET['category_id'];
                             }
 
                             $query = "SELECT * FROM category,product where product.category_id = category.id" . $extend . " ORDER BY RAND() limit " . $pageLimit . "," . $setLimit;
@@ -166,10 +168,11 @@ $db_handle = new DBController();
 
                     <div class="biolife-panigations-block">
                         <?php
+
                         $per_page = 7;
                         $page_url = "?";
 
-                        $query = "SELECT * FROM product where status = 1";
+                        $query = "SELECT * FROM product where status = 1" . $extend ;
                         $total = $db_handle->numRows($query);
                         $adjacents = "2";
 
@@ -190,7 +193,7 @@ $db_handle = new DBController();
                                     if ($counter == $page)
                                         $setPaginate .= "<li><span class='current-page'>$counter</span></li>";
                                     else
-                                        $setPaginate .= "<li><a class='link-page' href='{$page_url}page=$counter'>$counter</a></li>";
+                                        $setPaginate .= "<li><a class='link-page' href='{$page_url}page=$counter{$category}'>$counter</a></li>";
                                 }
                             } elseif ($setLastpage > 5 + ($adjacents * 2)) {
                                 if ($page < 1 + ($adjacents * 2)) {
@@ -198,33 +201,33 @@ $db_handle = new DBController();
                                         if ($counter == $page)
                                             $setPaginate .= "<li><span class='current-page'>$counter</span></li>";
                                         else
-                                            $setPaginate .= "<li><a class='link-page' href='{$page_url}page=$counter'>$counter</a></li>";
+                                            $setPaginate .= "<li><a class='link-page' href='{$page_url}page=$counter{$category}'>$counter</a></li>";
                                     }
                                     $setPaginate .= "<li><span class='sep'>...</span></li>";
-                                    $setPaginate .= "<li><a href='{$page_url}page=$lpm1'>$lpm1</a></li>";
-                                    $setPaginate .= "<li><a href='{$page_url}page=$setLastpage'>$setLastpage</a></li>";
+                                    $setPaginate .= "<li><a href='{$page_url}page=$lpm1{$category}'>$lpm1</a></li>";
+                                    $setPaginate .= "<li><a href='{$page_url}page=$setLastpage{$category}'>$setLastpage</a></li>";
                                 } elseif ($setLastpage - ($adjacents * 2) > $page && $page > ($adjacents * 2)) {
-                                    $setPaginate .= "<li><a class='link-page' href='{$page_url}page=1'>1</a></li>";
-                                    $setPaginate .= "<li><a class='link-page' href='{$page_url}page=2'>2</a></li>";
+                                    $setPaginate .= "<li><a class='link-page' href='{$page_url}page=1{$category}'>1</a></li>";
+                                    $setPaginate .= "<li><a class='link-page' href='{$page_url}page=2{$category}'>2</a></li>";
                                     $setPaginate .= "<li><span class='sep'>...</span></li>";
                                     for ($counter = $page - $adjacents; $counter <= $page + $adjacents; $counter++) {
                                         if ($counter == $page)
                                             $setPaginate .= "<li><span class='current-page'>$counter</span></li>";
                                         else
-                                            $setPaginate .= "<li><a class='link-page' href='{$page_url}page=$counter'>$counter</a></li>";
+                                            $setPaginate .= "<li><a class='link-page' href='{$page_url}page=$counter{$category}'>$counter</a></li>";
                                     }
                                     $setPaginate .= "<li><span class='sep'>...</span></li>";
-                                    $setPaginate .= "<li><a class='link-page' href='{$page_url}page=$lpm1'>$lpm1</a></li>";
-                                    $setPaginate .= "<li><a class='link-page' href='{$page_url}page=$setLastpage'>$setLastpage</a></li>";
+                                    $setPaginate .= "<li><a class='link-page' href='{$page_url}page=$lpm1{$category}'>$lpm1</a></li>";
+                                    $setPaginate .= "<li><a class='link-page' href='{$page_url}page=$setLastpage{$category}'>$setLastpage</a></li>";
                                 } else {
-                                    $setPaginate .= "<li><a class='link-page' href='{$page_url}page=1'>1</a></li>";
-                                    $setPaginate .= "<li><a class='link-page' href='{$page_url}page=2'>2</a></li>";
+                                    $setPaginate .= "<li><a class='link-page' href='{$page_url}page=1{$category}'>1</a></li>";
+                                    $setPaginate .= "<li><a class='link-page' href='{$page_url}page=2{$category}'>2</a></li>";
                                     $setPaginate .= "<li><span class='sep'>...</span></li>";
                                     for ($counter = $setLastpage - (2 + ($adjacents * 2)); $counter <= $setLastpage; $counter++) {
                                         if ($counter == $page)
                                             $setPaginate .= "<li><span class='current-page'>$counter</span></li>";
                                         else
-                                            $setPaginate .= "<li><a class='link-page' href='{$page_url}page=$counter'>$counter</a></li>";
+                                            $setPaginate .= "<li><a class='link-page' href='{$page_url}page=$counter{$category}'>$counter</a></li>";
                                     }
                                 }
                             }
