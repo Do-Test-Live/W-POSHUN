@@ -75,12 +75,12 @@ if(isset($_POST['sendMessage'])){
                 </div>
                 <div class="top-bar right">
                     <ul class="social-list">
-                        <li><a href="#">Whatsapp: 852-67696741</a></li>
+                        <li><a href="#">Fax: (852) 23081691</a></li>
                     </ul>
                     <ul class="horizontal-menu">
                         <li class="horz-menu-item lang">
                             <select name="language">
-                                <option selected value="en">Address: 名片上英文地址</option>
+                                <option selected value="en">Address: Rm 1103, 11/F., Hang Cheong Centre,138 Bedford Rd., Tai Kok Tsui, Kln.</option>
                             </select>
                         </li>
                     </ul>
@@ -92,7 +92,7 @@ if(isset($_POST['sendMessage'])){
                 <div class="row">
                     <div class="col-lg-3 col-md-2 col-md-6 col-xs-6">
                         <a class="biolife-logo" href="Home"><img alt="PO SHUN logo" height="36"
-                                                                 src="assets/images/organic-4.png" width="135"></a>
+                                                                 src="assets/images/organic-4.png" width="135" style="margin-left: -7px;"></a>
                     </div>
                     <div class="col-lg-6 col-md-7 hidden-sm hidden-xs">
                         <div class="primary-menu">
@@ -181,14 +181,20 @@ if(isset($_POST['sendMessage'])){
                                 </li>
                                 <li>
                                     <div class="if-item">
-                                        <b class="tie">Email:</b>
-                                        <p class="dsc">poshun@netvigator.com</p>
+                                        <b class="tie">Fax:</b>
+                                        <p class="dsc">(852) 23081691</p>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="if-item">
-                                        <b class="tie">Store Open:</b>
-                                        <p class="dsc">Hours: 7 Days a week from 10:00 am</p>
+                                        <b class="tie">Whatsapp:</b>
+                                        <p class="dsc">(852) 67696741</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="if-item">
+                                        <b class="tie">Email:</b>
+                                        <p class="dsc">poshun@netvigator.com</p>
                                     </div>
                                 </li>
                             </ul>
@@ -268,7 +274,7 @@ if(isset($_POST['sendMessage'])){
                                     <li>
                                         <p class="info-item">
                                             <i class="biolife-icon icon-location"></i>
-                                            <b class="desc">Address: 名片上英文地址</b>
+                                            <b class="desc">Address: Rm 1103, 11/F., Hang Cheong Centre,138 Bedford Rd., Tai Kok Tsui, Kln.</b>
                                         </p>
                                     </li>
                                     <li>
@@ -279,20 +285,20 @@ if(isset($_POST['sendMessage'])){
                                     </li>
                                     <li>
                                         <p class="info-item">
+                                            <i class="fa fa-fax" style="font-size: 22px;padding-right: 13px;"></i>
+                                            <b class="desc">Fax: (852) 23081691</b>
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <p class="info-item">
                                             <i class="fa fa-whatsapp" style="font-size: 22px;padding-right: 13px;"></i>
-                                            <b class="desc">Whatsapp: 852-6769674</b>
+                                            <b class="desc">Whatsapp: (852) 67696741</b>
                                         </p>
                                     </li>
                                     <li>
                                         <p class="info-item">
                                             <i class="biolife-icon icon-letter"></i>
                                             <b class="desc">E-mail: poshun@netvigator.com</b>
-                                        </p>
-                                    </li>
-                                    <li>
-                                        <p class="info-item">
-                                            <i class="biolife-icon icon-clock"></i>
-                                            <b class="desc">Hours: 7 Days a week from 10:00 am</b>
                                         </p>
                                     </li>
                                 </ul>

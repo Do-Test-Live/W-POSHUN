@@ -892,7 +892,7 @@ body{
     }
 }
 .header-top .top-bar{
-    max-width: 50%;
+    max-width: 65%;
     float: left;
 }
 .header-top .right{
@@ -3016,7 +3016,7 @@ body.open-mobile-search .header-area.layout-02{
     color: #666666;
     display: inline-block;
     font-weight: 400;
-    width: calc( 100% - 36px);
+    width: calc( 100% - 40px);
 }
 .contact-info-block.simple-info{
     margin-top: 24px;
